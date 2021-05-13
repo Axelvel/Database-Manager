@@ -25,23 +25,10 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.sizeToScene();
 
-        Vbox userFields = createContent();
 
         primaryStage.show();
     }
 
-    public static VBox createContent()
-    {
-        VBox vboxLayout = new VBox();
-        vboxLayout.setPadding(new Insets(10));
-        vboxLayout.setSpacing(8);
-
-        Text titleLabel = new Text("Welcome ! \n" + "Please login");
-        Text userLabel = new Text("Username :");
-        Text passwordLabel = new Text("Password :");
-
-        return vboxLayout;
-    }
 
     public static void main(String[] args) {
         launch(args);
