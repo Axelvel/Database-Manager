@@ -25,7 +25,24 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.sizeToScene();
 
-        Vbox userFields = createContent();
+        VBox userFields = createContent();
+
+
+        User user1 = new User(1,"Jean", "Robert", true);
+        User user2 = new User(2,"Jeanne", "Roberta", true);
+
+        Users UserList = new Users();
+
+        UserList.addUser(user1);
+        UserList.addUser(user2);
+
+        UserList.showUserslist();
+
+        UserList.deleteUser(1);
+
+        UserList.showUserslist();
+
+
 
         primaryStage.show();
     }
