@@ -27,7 +27,7 @@ public class Main extends Application {
 
         VBox userFields = createContent();
 
-
+        //User Database
         User user1 = new User(1,"Jean", "Robert", true);
         User user2 = new User(2,"Jeanne", "Roberta", true);
 
@@ -41,6 +41,20 @@ public class Main extends Application {
         UserList.deleteUser(1);
 
         UserList.showUserslist();
+
+        //Asset Database
+        Computer comp1 = new Computer(1, 1,"Computer1", true,true, "Window10", 1024, 16);
+        Asset asset1 = new Asset(2,1, "Asset2", true, false);
+
+        Database db = new Database();
+
+        db.addAsset(comp1);
+        db.addAsset(asset1);
+
+        db.showDatabase();
+
+        System.out.println(db.available());
+        System.out.println(db.status());
 
 
 
