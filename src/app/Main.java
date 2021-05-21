@@ -18,18 +18,16 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
 
-        Connection dbConnector = DriverManager.getConnection("jdbc:sqlite:C:/Users/teimo/Documents/COURS/INFO02/AP4B/Projet/Database-Manager/database/ap4b_db.db");
+        DatabaseConnection connection = new DatabaseConnection("database/ap4b_db.db");
+        connection.connect();
+        ResultSet rs = connection.query("SELECT * FROM test_table");
 
-        Statement stmt = dbConnector.createStatement();
-        ResultSet rs = stmt.executeQuery ("SELECT * FROM test_table");
         while (rs.next()) {
             System.out.println("ID : " + rs.getString("id"));
             System.out.println("test : " + rs.getString("test_column"));
         }
 
-
-        //String currentPath = new java.io.File(".").getCanonicalPath();
-        //System.out.println("Current dir:" + currentPath);
+        connection.close();
         }
 
     public static void main(String[] args) {
