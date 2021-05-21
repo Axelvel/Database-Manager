@@ -104,7 +104,5 @@ public class Controller {
         } else {
             System.out.println("Refused");
         }
-
-
     }
 }

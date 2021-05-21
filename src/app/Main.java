@@ -12,6 +12,8 @@ import javafx.stage.StageStyle;
 
 import java.util.Objects;
 
+import java.sql.*;
+
 public class Main extends Application {
 
     @Override
@@ -56,25 +58,21 @@ public class Main extends Application {
         System.out.println(db.available());
         System.out.println(db.status());
 
-
-
         primaryStage.show();
-    }
-
-    public static VBox createContent()
-    {
-        VBox vboxLayout = new VBox();
-        vboxLayout.setPadding(new Insets(10));
-        vboxLayout.setSpacing(8);
-
-        Text titleLabel = new Text("Welcome ! \n" + "Please login");
-        Text userLabel = new Text("Username :");
-        Text passwordLabel = new Text("Password :");
-
-        return vboxLayout;
     }
 
     public static void main(String[] args) {
         launch(args);
-    }
+  
+        DatabaseConnection connection = new DatabaseConnection("database/ap4b_db.db");
+        connection.connect();
+        ResultSet rs = connection.query("SELECT * FROM test_table");
+
+        while (rs.next()) {
+            System.out.println("ID : " + rs.getString("id"));
+            System.out.println("test : " + rs.getString("test_column"));
+        }
+
+        connection.close();
+        }
 }
