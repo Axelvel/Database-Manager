@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ListView?>
+<GridPane fx:controller="app.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
 
-<GridPane alignment="center" hgap="10" prefHeight="152.0" prefWidth="208.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller">
-    <Label text="IT Asset Manager" />
-    <Button fx:id="start_btn" onAction="#pressButton" prefHeight="26.0" prefWidth="91.0" text="Start" GridPane.rowIndex="1" />
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
+    <VBox alignment="CENTER" spacing="20">
+        <Label text="IT Asset Manager"/>
+        <TextField fx:id="usernameField">Username</TextField>
+        <TextField fx:id="passwordField">Password</TextField>
+        <Button text="Login" onAction="#login"/>
+        <Button text="getIndex" onAction="#getIndex"></Button>
+        <ListView fx:id="dataList" maxWidth="Infinity"></ListView>
+    </VBox>
+
+
 </GridPane>
