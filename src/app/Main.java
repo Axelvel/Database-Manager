@@ -18,6 +18,10 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
 
+        }
+
+    public static void main(String[] args) throws SQLException {
+        /*DATABASE TEST*/
         DatabaseConnection connection = new DatabaseConnection("database/ap4b_db.db");
         connection.connect();
         ResultSet rs = connection.query("SELECT * FROM test_table");
@@ -28,9 +32,7 @@ public class Main extends Application {
         }
 
         connection.close();
-        }
 
-    public static void main(String[] args) {
         launch(args);
     }
 }
