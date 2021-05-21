@@ -28,8 +28,8 @@ public class Main extends Application {
         VBox userFields = createContent();
 
         //User Database
-        User user1 = new User(1,"Jean", "Robert", true);
-        User user2 = new User(2,"Jeanne", "Roberta", true);
+        User user1 = new User(1,"abc", "pass", "Jean", "Robert", true);
+        User user2 = new User(2,"xyz", "word", "Jeanne", "Roberta", true);
 
         Users UserList = new Users();
 

@@ -8,6 +8,10 @@ public class Users {
 
     private List<User> users = new ArrayList<User>();
 
+    public List<User> getUsers() {
+        return this.users;
+    }
+
     public void addUser(User user) {
         users.add(user);
     }

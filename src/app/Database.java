@@ -7,6 +7,10 @@ public class Database {
 
     private List<Asset> database = new ArrayList<Asset>();
 
+    public List<Asset> getDatabase() {
+        return this.database;
+    }
+
     public void addAsset(Asset asset) {
         database.add(asset);
     }
