@@ -14,7 +14,10 @@
         <Label text="Logged in!"/>
         <HBox spacing="20">
             <Button text="Refresh" onAction="#refreshDataList"/>
-            <Button text="getIndex" onAction="#getIndex"/>
+            <Button text="Add" onAction="#goToAdd"/>
+            <Button text="Delete" onAction="#deleteAsset"/>
+            <Button text="Add User" onAction="#goToAddUser"/>
+            <!--<Button text="getIndex" onAction="#getIndex"/>-->
         </HBox>
 
         <ListView fx:id="dataList" maxWidth="Infinity"/>
