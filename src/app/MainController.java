@@ -40,10 +40,37 @@ public class MainController extends Controller{
         changeScene(window, "loginView.fxml", controller, 300, 275);
     }
 
+    @FXML
+    private void goToAdd() throws Exception {
+        Stage window = (Stage) root.getScene().getWindow();
+        Controller controller = new AddAssetController(dataModel);
+        changeScene(window, "addAssetView.fxml", controller, 300, 275);
+    }
 
     @FXML
-    private void getIndex() {
-        System.out.println(dataList.getSelectionModel().getSelectedIndex());
+    private void deleteAsset() {
+        int index = getIndex();
+        if (index != -1) {
+            int code = this.dataModel.database.getDatabase().get(index).getCode();
+            this.dataModel.database.removeAsset(code);
+            refreshDataList();
+        }
+    }
+
+    @FXML
+    private void goToAddUser() throws Exception {
+        Stage window = (Stage) root.getScene().getWindow();
+        Controller controller = new AddUserController(dataModel);
+        changeScene(window, "addUserView.fxml", controller, 400, 400);
+    }
+
+
+
+    @FXML
+    private int getIndex() {
+        int index = dataList.getSelectionModel().getSelectedIndex();
+        System.out.println(index);
+        return index;
     }
 
 }
