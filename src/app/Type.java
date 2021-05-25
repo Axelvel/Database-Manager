@@ -1,6 +1,6 @@
 package app;
 
-public enum Categories {
+public enum Type {
     COMPUTER,
     KEYBOARD,
     MOUSE

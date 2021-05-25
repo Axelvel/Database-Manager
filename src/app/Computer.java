@@ -7,7 +7,7 @@ public class Computer extends Asset {
     int ram;
 
 
-    public Computer(int code, int type, String name, boolean status, boolean available, String os, int memory, int ram) {
+    public Computer(int code, Type type, String name, boolean status, boolean available, String os, int memory, int ram) {
         super(code, type, name, status, available);
         this.os = os;
         this.memory = memory;

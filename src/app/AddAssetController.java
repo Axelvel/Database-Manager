@@ -69,8 +69,9 @@ public class AddAssetController extends Controller {
             available = true;
         }
 
+        //TODO : ALLOW DIFFERENT ASSETS TYPE
         if (name != null) {
-            Asset asset = new Asset(code, 1, name, status, available);
+            Asset asset = new Asset(code, Type.COMPUTER, name, status, available);
             dataModel.database.addAsset(asset);
             goBack();
         }

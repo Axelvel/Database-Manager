@@ -13,8 +13,8 @@ public class Model {
         User user2 = new User(2, "xyz", "word", "Jeanne", "Roberta", true);
 
         //Creating new assets
-        Computer comp1 = new Computer(1, 1,"Computer1", true,true, "Window10", 1024, 16);
-        Asset asset1 = new Asset(2,1, "Asset2", true, false);
+        Computer comp1 = new Computer(1, Type.COMPUTER,"Computer1", true,true, "Window10", 1024, 16);
+        Asset asset1 = new Asset(2,Type.COMPUTER, "Asset2", true, false);
 
         users.addUser(user1);
         users.addUser(user2);
