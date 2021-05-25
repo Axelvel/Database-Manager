@@ -68,6 +68,24 @@ public class DatabaseConnection {
      * Method used in order to ann a new asset to the database
      * TODO
      */
-    public void addAsset(){
+    public void addAsset(Asset asset) throws SQLException {
+        String sql = "INSERT INTO assets_table(asset_code,asset_type,asset_status,asset_availability) VALUES(?,?,?,?)";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1, asset.getCode());
+        pstmt.setString(2, asset.getType().toString());
+        pstmt.setString(3, asset.getStatus());
+        pstmt.setInt(4, 1);
+        pstmt.executeUpdate();
+
+        if (asset.getType() == Type.COMPUTER){
+            String sqlType = "INSERT INTO computers_table(computer_code,computer_brand,computer_os,computer_memory,computer_ram) VALUES(?,?,?,?,?)";
+            PreparedStatement pstmtType = connection.prepareStatement(sqlType);
+            pstmtType.setString(1, asset.getCode());
+            pstmtType.setString(2, asset.getBrand());
+            pstmtType.setString(3, asset.getOs());
+            pstmtType.setInt(4, asset.getMemory());
+            pstmtType.setInt(5, asset.getRam());
+            pstmtType.executeUpdate();
+        }
     }
 }
