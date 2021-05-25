@@ -15,7 +15,7 @@ public class Database {
         database.add(asset);
     }
 
-    public void removeAsset(int code) {
+    public void removeAsset(String code) {
         database.removeIf(asset -> (asset.getCode() == code));
     }
 
@@ -35,9 +35,11 @@ public class Database {
         return  i;
     }
 
+    //TODO : correct changes with status
+    /*
     public int status() {
         int i = (int) database.stream().filter(Asset::getStatus).count();
 
         return i;
-    }
+    }*/
 }

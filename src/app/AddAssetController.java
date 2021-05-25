@@ -41,24 +41,25 @@ public class AddAssetController extends Controller {
     @FXML
     public void addAsset() throws Exception {
 
-        int code;
+        String code;
         String name;
-        boolean status;
+        String status;
         boolean available;
 
         int size;
         size = dataModel.database.getDatabase().size();
-        code = dataModel.database.getDatabase().get(size - 1).getCode() + 1;
+        code = dataModel.database.getDatabase().get(size - 1).getCode() + 1; //TODO : correct code incrementation
 
         name = nameField.getText();
 
-
+        //TODO : correct status attribute
+        status = "Good";
         if (statusToggle1.isSelected()) {
             //Status: No
-            status = false;
+            //status = false;
         } else {
             //Status: Yes
-            status = true;
+            //status = true;
         }
 
         if (availabilityToggle1.isSelected()) {
@@ -71,7 +72,7 @@ public class AddAssetController extends Controller {
 
         //TODO : ALLOW DIFFERENT ASSETS TYPE
         if (name != null) {
-            Asset asset = new Asset(code, Type.COMPUTER, name, status, available);
+            Asset asset = new Asset(code, Type.COMPUTER, status, available);
             dataModel.database.addAsset(asset);
             goBack();
         }
