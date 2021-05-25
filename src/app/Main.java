@@ -14,8 +14,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-
-
         Model dataModel = new Model();
         Controller controller = new LoginController(dataModel);
 

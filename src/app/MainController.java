@@ -24,12 +24,11 @@ public class MainController extends Controller{
     @FXML
     private Button disconnectButton;
 
-
     public void refreshDataList() {
         dataList.getItems().clear();
         this.dataModel.database.getDatabase().forEach(asset -> {
             //dataList.getItems().add(asset.getName() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
-            dataList.getItems().add(" (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
+            dataList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
         });
     }
 

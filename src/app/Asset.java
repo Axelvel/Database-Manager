@@ -11,13 +11,14 @@ public class Asset {
         this.code = code;
         this.type = type;
         this.status = status;
-        this. available = available;
+        this.available = available;
     }
 
     public String getCode() {
         return this.code;
     }
 
+    public Type getType() {return this.type;}
 
     public String getStatus() {
         return this.status;

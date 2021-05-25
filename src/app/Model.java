@@ -21,7 +21,7 @@ public class Model {
 
         // DATABASE INITIALIZATION
         assetsDbConnection.connect();
-        
+
         //Creating computers
         ResultSet rs = assetsDbConnection.query("SELECT computers_table.computer_code, " +
                 "computers_table.computer_brand, computers_table.computer_os, computers_table.computer_memory, " +
