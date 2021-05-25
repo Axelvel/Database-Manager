@@ -44,7 +44,7 @@ public class MainController extends Controller{
     private void goToAdd() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new AddAssetController(dataModel);
-        changeScene(window, "addAssetView.fxml", controller, 300, 275);
+        changeScene(window, "addAssetView.fxml", controller, 400, 600);
     }
 
     @FXML

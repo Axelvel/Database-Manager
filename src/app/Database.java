@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
+    //TODO : create specific functions to avoid using sql request
 
     private List<Asset> database = new ArrayList<Asset>();
 

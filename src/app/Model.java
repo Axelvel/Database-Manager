@@ -43,4 +43,8 @@ public class Model {
 
     }
 
+    public DatabaseConnection getDb(){
+        return this.assetsDbConnection;
+    }
+
 }

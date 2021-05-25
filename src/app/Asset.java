@@ -31,4 +31,10 @@ public class Asset {
     public void showAsset() {
         System.out.println("Code : " + this.getCode());
     }
+
+    //VIRTUAL METHODS ?
+    public String getBrand(){return null;}
+    public String getOs(){return null;}
+    public int getMemory(){return 0;}
+    public int getRam(){return 0;}
 }
