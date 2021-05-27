@@ -58,5 +58,6 @@ public class Asset {
     public String getOs(){return null;}
     public int getMemory(){return 0;}
     public int getRam(){return 0;}
-
+    public String getSwitches(){return null;}
+    public boolean getWireless(){return false;}
 }

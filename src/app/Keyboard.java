@@ -12,4 +12,14 @@ public class Keyboard extends Asset{
         this.wireless = wireless;
         this.switches = switches;
     }
+
+    @Override
+    public void showAsset() {
+        System.out.println("Code : " + this.getCode() + ", brand : " + this.brand + ", switches: " + this.switches);
+    }
+
+    @Override
+    public String getBrand(){return this.brand;}
+    public String getSwitches(){return this.switches;}
+    public boolean getWireless(){return this.wireless;}
 }
