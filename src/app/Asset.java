@@ -1,6 +1,6 @@
 package app;
 
-public class Asset {
+public abstract class Asset {
 
     private String code;
     private Type type;
@@ -53,10 +53,18 @@ public class Asset {
         this.available = available;
     }
 
+
     //VIRTUAL METHODS
+
+    //Getters
     public String getBrand(){return null;}
     public String getOs(){return null;}
     public int getMemory(){return 0;}
     public int getRam(){return 0;}
 
+    //Setters
+    public abstract void setOs(String os);
+    public abstract void setBrand(String brand);
+    public abstract void setMemory(int memory);
+    public abstract void setRam(int ram);
 }

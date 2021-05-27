@@ -17,7 +17,7 @@
         <HBox spacing="20">
             <RadioButton fx:id="statusToggle1" selected="true" text="Excellent">
                 <toggleGroup>
-                    <ToggleGroup fx:id="statusGroup" />
+                    <ToggleGroup fx:id="statusGroup"/>
                 </toggleGroup>
             </RadioButton>
             <RadioButton fx:id="statusToggle2" text="Good" toggleGroup="$statusGroup" />
@@ -29,9 +29,13 @@
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="OS" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <RadioButton fx:id="osToggle1" mnemonicParsing="false" selected="true" text="Windows" />
-            <RadioButton fx:id="osToggle2" mnemonicParsing="false" text="Linux" />
-            <RadioButton fx:id="osToggle3" mnemonicParsing="false" text="MacOS" />
+            <RadioButton fx:id="osToggle1" mnemonicParsing="false" selected="true" text="Windows">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="osGroup"/>
+                    </toggleGroup>
+             </RadioButton>
+            <RadioButton fx:id="osToggle2" mnemonicParsing="false" text="Linux" toggleGroup="$osGroup" />
+            <RadioButton fx:id="osToggle3" mnemonicParsing="false" text="MacOS" toggleGroup="$osGroup"/>
          </children></HBox>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Memory" />
       <TextField fx:id="memoryTextField" />
