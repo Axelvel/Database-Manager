@@ -14,6 +14,9 @@ public class Asset {
         this.available = available;
     }
 
+
+    //Getters
+
     public String getCode() {
         return this.code;
     }
@@ -32,9 +35,28 @@ public class Asset {
         System.out.println("Code : " + this.getCode());
     }
 
+    //Setters
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
     //VIRTUAL METHODS
     public String getBrand(){return null;}
     public String getOs(){return null;}
     public int getMemory(){return 0;}
     public int getRam(){return 0;}
+
 }
