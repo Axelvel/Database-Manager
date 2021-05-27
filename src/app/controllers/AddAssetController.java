@@ -1,5 +1,8 @@
-package app;
+package app.controllers;
 
+import app.Model;
+import app.Type;
+import classes.Computer;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -58,7 +61,7 @@ public class AddAssetController extends Controller {
     public void goBack() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new MainController(this.dataModel);
-        changeScene(window, "mainView.fxml", controller, 600, 700);
+        changeScene(window, "../views/mainView.fxml", controller, 600, 700);
     }
 
     @FXML
@@ -96,7 +99,7 @@ public class AddAssetController extends Controller {
                 os = "MacOS";
             }
 
-            Computer c = new Computer(code,Type.COMPUTER,status,true,brandTextField.getText(),os,
+            Computer c = new Computer(code, Type.COMPUTER,status,true,brandTextField.getText(),os,
                     Integer.parseInt(memoryTextField.getText()),Integer.parseInt(ramTextField.getText()));
 
             dataModel.getDb().addAsset(c);

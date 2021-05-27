@@ -1,4 +1,6 @@
-package app;
+package classes;
+
+import app.Type;
 
 public class Keyboard extends Asset{
 
@@ -6,7 +8,7 @@ public class Keyboard extends Asset{
     private boolean wireless;
     private String switches;
 
-    public Keyboard(String code, Type type, String status, boolean available,String brand,
+    public Keyboard(String code, Type type, String status, boolean available, String brand,
                     boolean wireless, String switches){
         super(code,type,status,available);
         this.brand = brand;

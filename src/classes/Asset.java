@@ -1,4 +1,6 @@
-package app;
+package classes;
+
+import app.Type;
 
 /**
  * Abstract class representing an asset
