@@ -1,15 +1,19 @@
 package app;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class MainController extends Controller{
+public class MainController extends Controller implements Initializable {
 
     public MainController(Model dataModel) {
         super(dataModel);
@@ -86,5 +90,16 @@ public class MainController extends Controller{
         return index;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        Task<Void> task = new Task<>() {
+            @Override public Void call() throws SQLException {
+                refreshDataList();
+                return null;
+            }
+        };
+
+        new Thread(task).start();
+    }
 }

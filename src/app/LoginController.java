@@ -1,12 +1,16 @@
 package app;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LoginController extends Controller {
+
+public class LoginController extends Controller implements Initializable {
 
     public LoginController(Model dataModel) {
         super(dataModel);
@@ -44,4 +48,13 @@ public class LoginController extends Controller {
         }
     }
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //TODO: request focus
+        usernameField.setPromptText("Username");
+        passwordField.setPromptText("Password");
+        usernameField.setFocusTraversable(false);
+        passwordField.setFocusTraversable(false);
+    }
 }
