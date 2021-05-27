@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,9 +19,7 @@ public class MainController extends Controller implements Initializable {
 
     public MainController(Model dataModel) {
         super(dataModel);
-        //TODO: Refresh dataList when scene is loaded
     }
-
 
     @FXML
     private GridPane root;
@@ -31,10 +30,9 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private Button disconnectButton;
 
-    public void refreshDataList() {
+    public void refreshDataList() throws SQLException {
         dataList.getItems().clear();
         this.dataModel.database.getDatabase().forEach(asset -> {
-            //dataList.getItems().add(asset.getName() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
             dataList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
 
         });
@@ -56,11 +54,11 @@ public class MainController extends Controller implements Initializable {
     }
 
     @FXML
-    private void deleteAsset() {
+    private void deleteAsset() throws SQLException {
         int index = getIndex();
         if (index != -1) {
-            String code = this.dataModel.database.getDatabase().get(index).getCode();
-            this.dataModel.database.removeAsset(code);
+            this.dataModel.getDb().deleteAsset(this.dataModel.database.getDatabase().get(index));
+            dataModel.refreshDatabase();
             refreshDataList();
         }
     }
@@ -91,7 +89,6 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private int getIndex() {
         int index = dataList.getSelectionModel().getSelectedIndex();
-        System.out.println(index);
         return index;
     }
 
@@ -99,7 +96,7 @@ public class MainController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         Task<Void> task = new Task<>() {
-            @Override public Void call() {
+            @Override public Void call() throws SQLException {
                 refreshDataList();
                 return null;
             }

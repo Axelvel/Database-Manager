@@ -96,14 +96,14 @@ public class AddAssetController extends Controller {
                 os = "MacOS";
             }
 
-
             Computer c = new Computer(code,Type.COMPUTER,status,true,brandTextField.getText(),os,
                     Integer.parseInt(memoryTextField.getText()),Integer.parseInt(ramTextField.getText()));
 
-            dataModel.database.addAsset(c);
             dataModel.getDb().addAsset(c);
+            dataModel.refreshDatabase();
             goBack();
         }
 
     }
+
 }

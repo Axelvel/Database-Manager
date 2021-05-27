@@ -65,7 +65,7 @@ public class DatabaseConnection {
     }
 
     /**
-     * Method used in order to ann a new asset to the database
+     * Method used in order to add a new asset to the sql database
      * TODO
      */
     public void addAsset(Asset asset) throws SQLException {
@@ -86,6 +86,38 @@ public class DatabaseConnection {
             pstmtType.setInt(4, asset.getMemory());
             pstmtType.setInt(5, asset.getRam());
             pstmtType.executeUpdate();
+        }
+    }
+
+    /**
+     * Method used in order to deleter an asset from the sqlite database
+     * @param asset : asset the user wants to deleter
+     * @throws SQLException
+     */
+    public void deleteAsset(Asset asset) throws SQLException {
+        String sql ="DELETE FROM assets_table WHERE asset_code = '" + asset.getCode() +"'";
+        System.out.println(sql);
+        statement.executeUpdate(sql);
+        if (asset.getType() == Type.COMPUTER){
+            String sql_2 ="DELETE FROM computers_table WHERE computer_code = '" + asset.getCode() +"'";
+            statement.executeUpdate(sql_2);
+        }
+    }
+
+    /*DEBUG METHODS*/
+    public void printComputers() throws SQLException {
+        String sql = "SELECT * FROM computers_table";
+        ResultSet result = statement.executeQuery(sql);
+        while(result.next()){
+            System.out.println(result.getString("computer_code"));
+        }
+    }
+
+    public void printAssets() throws SQLException {
+        String sql = "SELECT * FROM assets_table";
+        ResultSet result = statement.executeQuery(sql);
+        while(result.next()){
+            System.out.println(result.getString("asset_code"));
         }
     }
 }

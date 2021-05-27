@@ -1,70 +1,55 @@
 package app;
 
+
+/**
+ * Abstract class representing an asset
+ * Each assets owns a code, composed of the acronyme of its type and a number,
+ * a type, a status and an availability
+ */
+
 public abstract class Asset {
 
     private String code;
     private Type type;
     private String status;
-    private boolean available;
+    private boolean availability;
 
     public Asset(String code, Type type, String status, boolean available) {
         this.code = code;
         this.type = type;
         this.status = status;
-        this.available = available;
+        this.availability = available;
     }
-
-
-    //Getters
-
-    public String getCode() {
-        return this.code;
-    }
-
+    public String getCode() { return this.code; }
     public Type getType() {return this.type;}
+    public String getStatus() { return this.status; }
 
-    public String getStatus() {
-        return this.status;
-    }
-
-    public boolean isAvailable() {
-        return this.available;
-    }
-
+    public boolean isAvailable() { return this.availability; }
     public void showAsset() {
-        System.out.println("Code : " + this.getCode());
+        System.out.println("ASSET " + this.getCode() + "\nType : "+this.getType()
+                +"\nStatus :"+getStatus()+"\nAvailability :"+isAvailable());
     }
 
-    //Setters
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
+    public void setCode(String code) { this.code = code; }
+    public void setType(Type type) { this.type = type; }
+    public void setStatus(String status) { this.status = status; }
+    public void setAvailability(boolean available) { this.availability = available; }
 
 
-    //VIRTUAL METHODS
+    /**VIRTUAL METHODS**/
 
     //Getters
     public String getBrand(){return null;}
     public String getOs(){return null;}
     public int getMemory(){return 0;}
     public int getRam(){return 0;}
+    public String getSwitches(){return null;}
+    public boolean getWireless(){return false;}
 
     //Setters
-    public abstract void setOs(String os);
-    public abstract void setBrand(String brand);
-    public abstract void setMemory(int memory);
-    public abstract void setRam(int ram);
+    public void setOs(String os){};
+    public void setBrand(String brand){};
+    public void setMemory(int memory){};
+    public void setRam(int ram) {};
+
 }

@@ -64,10 +64,6 @@ public class UpdateAssetController extends Controller  implements Initializable 
     @FXML
     private TextField ramTextField;
 
-    public UpdateAssetController(Model dataModel) {
-        super(dataModel);
-    }
-
 
     @FXML
     public void goBack() throws Exception {
@@ -117,8 +113,9 @@ public class UpdateAssetController extends Controller  implements Initializable 
 
         if (code != null) { //TODO: Type check
 
-            asset.setAvailable(available);
+            asset.setAvailability(available);
             asset.setStatus(status);
+
 
             //Computer
             asset.setBrand(brand);
@@ -166,16 +163,6 @@ public class UpdateAssetController extends Controller  implements Initializable 
 
         memoryTextField.setText(memory);
         ramTextField.setText(ram);
-
-        Type type = asset.getType();
-
-       switch (type) {
-           case COMPUTER: System.out.println("COMP");
-           case KEYBOARD: System.out.println("KEYB");
-           case MOUSE: System.out.println("MOUS");
-       }
-
-
 
     }
 }
