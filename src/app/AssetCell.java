@@ -10,7 +10,8 @@ public class AssetCell extends ListCell<Asset> {
             setText(null);
             setGraphic(null);
         } else {
-            setText(asset.getName() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
+            //setText(asset.getName() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
+            setText(" (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
             setGraphic(null);
         }
     }
