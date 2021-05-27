@@ -33,7 +33,6 @@ public class MainController extends Controller implements Initializable {
     public void refreshDataList() throws SQLException {
         dataList.getItems().clear();
         this.dataModel.database.getDatabase().forEach(asset -> {
-            //dataList.getItems().add(asset.getName() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
             dataList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
         });
     }
@@ -57,9 +56,8 @@ public class MainController extends Controller implements Initializable {
     private void deleteAsset() throws SQLException {
         int index = getIndex();
         if (index != -1) {
-            String code = this.dataModel.database.getDatabase().get(index).getCode();
             this.dataModel.getDb().deleteAsset(this.dataModel.database.getDatabase().get(index));
-            this.dataModel.database.removeAsset(code);
+            dataModel.refreshDatabase();
             refreshDataList();
         }
     }

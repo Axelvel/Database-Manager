@@ -6,7 +6,8 @@ public class Keyboard extends Asset{
     private boolean wireless;
     private String switches;
 
-    public Keyboard(String code, Type type, String status, boolean available,String brand, boolean wireless, String switches){
+    public Keyboard(String code, Type type, String status, boolean available,String brand,
+                    boolean wireless, String switches){
         super(code,type,status,available);
         this.brand = brand;
         this.wireless = wireless;
@@ -15,7 +16,8 @@ public class Keyboard extends Asset{
 
     @Override
     public void showAsset() {
-        System.out.println("Code : " + this.getCode() + ", brand : " + this.brand + ", switches: " + this.switches);
+        System.out.println("Code : " + this.getCode() + ", brand : " + this.brand +
+                ", switches: " + this.switches);
     }
 
     @Override

@@ -79,7 +79,7 @@ public class UpdateAssetController extends Controller {
 
             Asset asset = dataModel.database.getDatabase().get(index);
 
-            asset.setAvailable(available);
+            asset.setAvailability(available);
             asset.setStatus(status);
 
             goBack();
