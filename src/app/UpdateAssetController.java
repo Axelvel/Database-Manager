@@ -72,7 +72,7 @@ public class UpdateAssetController extends Controller {
 
         Asset asset = dataModel.database.getDatabase().get(index);
 
-        asset.s
+        //asset.s
 
         if (name != null) {
 
