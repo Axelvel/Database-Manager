@@ -6,6 +6,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 
 public class MainController extends Controller{
 
@@ -24,7 +26,7 @@ public class MainController extends Controller{
     @FXML
     private Button disconnectButton;
 
-    public void refreshDataList() {
+    public void refreshDataList() throws SQLException {
         dataList.getItems().clear();
         this.dataModel.database.getDatabase().forEach(asset -> {
             //dataList.getItems().add(asset.getName() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
@@ -48,10 +50,11 @@ public class MainController extends Controller{
     }
 
     @FXML
-    private void deleteAsset() {
+    private void deleteAsset() throws SQLException {
         int index = getIndex();
         if (index != -1) {
             String code = this.dataModel.database.getDatabase().get(index).getCode();
+            this.dataModel.getDb().deleteAsset(this.dataModel.database.getDatabase().get(index));
             this.dataModel.database.removeAsset(code);
             refreshDataList();
         }
@@ -69,8 +72,8 @@ public class MainController extends Controller{
     @FXML
     private int getIndex() {
         int index = dataList.getSelectionModel().getSelectedIndex();
-        System.out.println(index);
         return index;
     }
+
 
 }

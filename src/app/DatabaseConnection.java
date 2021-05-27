@@ -88,4 +88,31 @@ public class DatabaseConnection {
             pstmtType.executeUpdate();
         }
     }
+
+    public void deleteAsset(Asset asset) throws SQLException {
+        String sql ="DELETE FROM assets_table WHERE asset_code = '" + asset.getCode() +"'";
+        System.out.println(sql);
+        statement.executeUpdate(sql);
+        if (asset.getType() == Type.COMPUTER){
+            String sql_2 ="DELETE FROM computers_table WHERE computer_code = '" + asset.getCode() +"'";
+            statement.executeUpdate(sql_2);
+        }
+    }
+
+    //TEST
+    public void printComputers() throws SQLException {
+        String sql = "SELECT * FROM computers_table";
+        ResultSet result = statement.executeQuery(sql);
+        while(result.next()){
+            System.out.println(result.getString("computer_code"));
+        }
+    }
+
+    public void printAssets() throws SQLException {
+        String sql = "SELECT * FROM assets_table";
+        ResultSet result = statement.executeQuery(sql);
+        while(result.next()){
+            System.out.println(result.getString("asset_code"));
+        }
+    }
 }

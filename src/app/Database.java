@@ -36,6 +36,10 @@ public class Database {
         return  i;
     }
 
+    public Asset getAsset(int index){
+        return database.get(index);
+    }
+
     //TODO : correct changes with status
     /*
     public int status() {
