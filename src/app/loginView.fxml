@@ -9,8 +9,8 @@
 
     <VBox alignment="CENTER" spacing="20">
         <Label text="IT Asset Manager"/>
-        <TextField fx:id="usernameField">Username</TextField>
-        <TextField fx:id="passwordField">Password</TextField>
+        <TextField fx:id="usernameField"/>
+        <TextField fx:id="passwordField"/>
         <Button text="Login" onAction="#login"/>
 
     </VBox>
