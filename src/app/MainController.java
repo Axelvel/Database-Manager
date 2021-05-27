@@ -9,6 +9,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -34,6 +36,7 @@ public class MainController extends Controller implements Initializable {
         this.dataModel.database.getDatabase().forEach(asset -> {
             //dataList.getItems().add(asset.getName() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
             dataList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
+
         });
     }
 
@@ -65,11 +68,14 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private void updateAsset() throws Exception {
         int index = getIndex();
-        //Asset asset = dataModel.database.getDatabase().get(index);
 
-        Stage window = (Stage) root.getScene().getWindow();
-        Controller controller = new UpdateAssetController(dataModel, index);
-        changeScene(window, "updateAssetView.fxml", controller, 400, 600);
+        if (index != -1) {
+            Asset asset = dataModel.database.getDatabase().get(index);
+            Stage window = (Stage) root.getScene().getWindow();
+            Controller controller = new UpdateAssetController(dataModel, asset);
+            changeScene(window, "updateAssetView.fxml", controller, 400, 600);
+        }
+
 
     }
 
