@@ -7,7 +7,7 @@
 <GridPane fx:id="root" alignment="center" hgap="10" prefHeight="607.0" prefWidth="407.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
     <VBox alignment="CENTER" prefHeight="506.0" prefWidth="331.0" spacing="20">
-        <Label text="Add Asset" />
+        <Label text="Update Asset" />
         <HBox prefHeight="19.0" prefWidth="238.0">
             <children>
                 <RadioButton fx:id="typeComputer" mnemonicParsing="false" selected="true" text="Computer" />
