@@ -58,7 +58,13 @@ public class MainController extends Controller{
     }
 
     @FXML
-    private void updateAsset() {
+    private void updateAsset() throws Exception {
+        int index = getIndex();
+        //Asset asset = dataModel.database.getDatabase().get(index);
+
+        Stage window = (Stage) root.getScene().getWindow();
+        Controller controller = new UpdateAssetController(dataModel, index);
+        changeScene(window, "updateAssetView.fxml", controller, 400, 600);
 
     }
 

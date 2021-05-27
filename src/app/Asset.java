@@ -36,7 +36,22 @@ public class Asset {
     }
 
     //Setters
-    
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
     //VIRTUAL METHODS
     public String getBrand(){return null;}

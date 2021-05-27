@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class UpdateAssetController extends Controller {
 
-    private final int index;
+    private int index;
 
     public UpdateAssetController(Model dataModel, int index) {
         super(dataModel);
@@ -29,10 +29,20 @@ public class UpdateAssetController extends Controller {
     private RadioButton statusToggle2;
 
     @FXML
+    private RadioButton statusToggle3;
+
+    @FXML
+    private RadioButton statusToggle4;
+
+    @FXML
     private RadioButton availabilityToggle1;
 
     @FXML
     private RadioButton availabilityToggle2;
+
+    public UpdateAssetController(Model dataModel) {
+        super(dataModel);
+    }
 
 
     @FXML
@@ -45,36 +55,32 @@ public class UpdateAssetController extends Controller {
     @FXML
     public void updateAsset() throws Exception {
 
-        int code;
-        String name;
-        boolean status;
-        boolean available;
-
-
-        name = nameField.getText();
+        String code = dataModel.database.getDatabase().get(index).getCode();
+        String status = null;
 
 
         if (statusToggle1.isSelected()) {
-            //Status: No
-            status = false;
-        } else {
-            //Status: Yes
-            status = true;
+            status = "Excellent";
+        } else if (statusToggle2.isSelected()){
+            status = "Good";
+        } else if (statusToggle3.isSelected()) {
+            status = "Okay";
+        } else if (statusToggle4.isSelected()){
+            status = "Bad";
         }
+        boolean available = availabilityToggle1.isSelected();
 
-        if (availabilityToggle1.isSelected()) {
-            //Available : No
-            available = false;
-        } else {
-            //Available : Yes
-            available = true;
-        }
 
-        Asset asset = dataModel.database.getDatabase().get(index);
+        //available = !availabilityToggle1.isSelected();
 
-        //asset.s
 
-        if (name != null) {
+
+        if (code != null) {
+
+            Asset asset = dataModel.database.getDatabase().get(index);
+
+            asset.setAvailable(available);
+            asset.setStatus(status);
 
             dataModel.database.addAsset(asset);
             goBack();
