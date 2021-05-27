@@ -16,6 +16,8 @@ public class Asset {
         this. available = available;
     }
 
+    //Getters
+
     public int getCode() {
         return this.code;
     }
@@ -35,4 +37,7 @@ public class Asset {
     public void showAsset() {
         System.out.println("Code : " + this.getCode() + ", Name : " + this.getName());
     }
+
+    //Setters
+    
 }

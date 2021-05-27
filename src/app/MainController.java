@@ -58,6 +58,11 @@ public class MainController extends Controller{
     }
 
     @FXML
+    private void updateAsset() {
+
+    }
+
+    @FXML
     private void goToAddUser() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new AddUserController(dataModel);

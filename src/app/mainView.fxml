@@ -16,6 +16,7 @@
             <Button text="Refresh" onAction="#refreshDataList"/>
             <Button text="Add" onAction="#goToAdd"/>
             <Button text="Delete" onAction="#deleteAsset"/>
+            <Button text="Update Asset" onAction="#updateAsset"/>
             <Button text="Add User" onAction="#goToAddUser"/>
             <!--<Button text="getIndex" onAction="#getIndex"/>-->
         </HBox>
