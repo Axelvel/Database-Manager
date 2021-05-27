@@ -17,9 +17,7 @@ public class MainController extends Controller implements Initializable {
 
     public MainController(Model dataModel) {
         super(dataModel);
-        //TODO: Refresh dataList when scene is loaded
     }
-
 
     @FXML
     private GridPane root;

@@ -65,7 +65,7 @@ public class DatabaseConnection {
     }
 
     /**
-     * Method used in order to ann a new asset to the database
+     * Method used in order to add a new asset to the sql database
      * TODO
      */
     public void addAsset(Asset asset) throws SQLException {
@@ -89,6 +89,11 @@ public class DatabaseConnection {
         }
     }
 
+    /**
+     * Method used in order to deleter an asset from the sqlite database
+     * @param asset : asset the user wants to deleter
+     * @throws SQLException
+     */
     public void deleteAsset(Asset asset) throws SQLException {
         String sql ="DELETE FROM assets_table WHERE asset_code = '" + asset.getCode() +"'";
         System.out.println(sql);
@@ -99,7 +104,7 @@ public class DatabaseConnection {
         }
     }
 
-    //TEST
+    /*DEBUG METHODS*/
     public void printComputers() throws SQLException {
         String sql = "SELECT * FROM computers_table";
         ResultSet result = statement.executeQuery(sql);

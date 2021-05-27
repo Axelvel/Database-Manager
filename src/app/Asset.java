@@ -1,5 +1,6 @@
 package app;
 
+
 public class Asset {
 
     private String code;

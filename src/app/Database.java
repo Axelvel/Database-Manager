@@ -3,18 +3,15 @@ package app;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * class used in order to store the assets found in the sqlite database
+ */
 public class Database {
 
     private List<Asset> database = new ArrayList<Asset>();
 
     public List<Asset> getDatabase() {
         return this.database;
-    }
-
-    public void showDatabase() {
-        database.forEach(asset -> {
-            asset.showAsset();
-        });
     }
 
     public void addAsset(Asset asset) {
@@ -39,5 +36,11 @@ public class Database {
 
     public void clear(){
         database.clear();
+    }
+
+    public void showDatabase() {
+        database.forEach(asset -> {
+            asset.showAsset();
+        });
     }
 }
