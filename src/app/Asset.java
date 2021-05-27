@@ -32,7 +32,7 @@ public class Asset {
         System.out.println("Code : " + this.getCode());
     }
 
-    //VIRTUAL METHODS ?
+    //VIRTUAL METHODS
     public String getBrand(){return null;}
     public String getOs(){return null;}
     public int getMemory(){return 0;}

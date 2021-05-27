@@ -21,6 +21,7 @@ public class Computer extends Asset {
         System.out.println("Code : " + this.getCode() + ", OS : " + this.os + ", Memory : " + this.memory + ", RAM : " + this.ram);
     }
 
+    @Override
     public String getOs(){ return this.os; }
     public String getBrand(){return this.brand;}
     public int getMemory(){return this.memory;}
