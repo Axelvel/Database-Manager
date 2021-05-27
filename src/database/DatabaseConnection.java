@@ -1,4 +1,7 @@
-package app;
+package database;
+
+import app.Type;
+import classes.Asset;
 
 import java.sql.*;
 
@@ -96,7 +99,6 @@ public class DatabaseConnection {
      */
     public void deleteAsset(Asset asset) throws SQLException {
         String sql ="DELETE FROM assets_table WHERE asset_code = '" + asset.getCode() +"'";
-        System.out.println(sql);
         statement.executeUpdate(sql);
         if (asset.getType() == Type.COMPUTER){
             String sql_2 ="DELETE FROM computers_table WHERE computer_code = '" + asset.getCode() +"'";

@@ -1,5 +1,8 @@
-package app;
+package app.controllers;
 
+import classes.Controller;
+import app.Model;
+import classes.Asset;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -10,7 +13,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UpdateAssetController extends Controller  implements Initializable {
+public class UpdateAssetController extends Controller implements Initializable {
 
     private Asset asset;
 
@@ -69,7 +72,7 @@ public class UpdateAssetController extends Controller  implements Initializable 
     public void goBack() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new MainController(this.dataModel);
-        changeScene(window, "mainView.fxml", controller, 600, 700);
+        changeScene(window, "../views/mainView.fxml", controller, 600, 700);
     }
 
     @FXML
@@ -88,7 +91,6 @@ public class UpdateAssetController extends Controller  implements Initializable 
             status = "Bad";
         }
         boolean available = availabilityToggle1.isSelected();
-
 
         //Computer
         String brand = brandTextField.getText();

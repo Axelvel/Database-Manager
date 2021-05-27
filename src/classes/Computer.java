@@ -1,4 +1,6 @@
-package app;
+package classes;
+
+import app.Type;
 
 /**
  * Computer class
@@ -11,7 +13,7 @@ public class Computer extends Asset {
     private int memory;
     private int ram;
 
-    public Computer(String code, Type type, String status, boolean available,String brand,
+    public Computer(String code, Type type, String status, boolean available, String brand,
                     String os, int memory, int ram) {
         super(code, type, status, available);
         this.brand = brand;

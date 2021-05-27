@@ -1,5 +1,8 @@
-package app;
+package app.controllers;
 
+import classes.Controller;
+import app.Model;
+import classes.Asset;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,8 +13,6 @@ import javafx.stage.Stage;
 
 import java.sql.SQLException;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -43,14 +44,14 @@ public class MainController extends Controller implements Initializable {
     private void goToLogin() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new LoginController(dataModel);
-        changeScene(window, "loginView.fxml", controller, 300, 275);
+        changeScene(window, "../views/loginView.fxml", controller, 300, 275);
     }
 
     @FXML
     private void goToAdd() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new AddAssetController(dataModel);
-        changeScene(window, "addAssetView.fxml", controller, 400, 600);
+        changeScene(window, "../views/addAssetView.fxml", controller, 400, 600);
     }
 
     @FXML
@@ -66,22 +67,19 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private void updateAsset() throws Exception {
         int index = getIndex();
-
         if (index != -1) {
             Asset asset = dataModel.database.getDatabase().get(index);
             Stage window = (Stage) root.getScene().getWindow();
             Controller controller = new UpdateAssetController(dataModel, asset);
-            changeScene(window, "updateAssetView.fxml", controller, 400, 600);
+            changeScene(window, "../views/updateAssetView.fxml", controller, 400, 600);
         }
-
-
     }
 
     @FXML
     private void goToAddUser() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new AddUserController(dataModel);
-        changeScene(window, "addUserView.fxml", controller, 400, 400);
+        changeScene(window, "../views/addUserView.fxml", controller, 400, 400);
     }
 
 

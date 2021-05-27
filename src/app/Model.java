@@ -1,5 +1,11 @@
 package app;
 
+import classes.Computer;
+import classes.Database;
+import classes.User;
+import classes.Users;
+import database.DatabaseConnection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -11,7 +17,7 @@ public class Model {
 
     public Users users = new Users();
     public Database database = new Database();
-    private DatabaseConnection assetsDbConnection = new DatabaseConnection("database/ap4b_db.db");
+    private DatabaseConnection assetsDbConnection = new DatabaseConnection("src/database/ap4b_db.db");
 
 
     public Model() throws SQLException {

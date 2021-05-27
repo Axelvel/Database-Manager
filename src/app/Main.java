@@ -1,5 +1,7 @@
 package app;
 
+import app.controllers.LoginController;
+import classes.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +19,7 @@ public class Main extends Application {
         Model dataModel = new Model();
         Controller controller = new LoginController(dataModel);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("loginView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/loginView.fxml"));
         loader.setController(controller);
         Parent root = loader.load();
 

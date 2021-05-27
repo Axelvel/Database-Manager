@@ -1,4 +1,4 @@
-package app;
+package classes;
 
 public class User {
 

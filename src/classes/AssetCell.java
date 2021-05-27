@@ -1,5 +1,6 @@
-package app;
+package classes;
 
+import classes.Asset;
 import javafx.scene.control.ListCell;
 
 public class AssetCell extends ListCell<Asset> {
@@ -10,7 +11,6 @@ public class AssetCell extends ListCell<Asset> {
             setText(null);
             setGraphic(null);
         } else {
-            //setText(asset.getName() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
             setText(" (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
             setGraphic(null);
         }
