@@ -1,5 +1,9 @@
 package app;
 
+/**
+ * Computer class
+ * Each computer has an os, a brand, a memory and a ram
+ */
 public class Computer extends Asset {
 
     private String os;
@@ -18,8 +22,9 @@ public class Computer extends Asset {
 
     @Override
     public void showAsset() {
-        System.out.println("Code : " + this.getCode() + ", OS : " + this.os + ", Memory : "
-                + this.memory + ", RAM : " + this.ram);
+        super.showAsset();
+        System.out.println("\nCharacteristics :\nBrand : " + this.getBrand() + "\nOS : " + this.os + "\nMemory : "
+                + this.memory + "\nRAM : " + this.ram);
     }
 
     @Override

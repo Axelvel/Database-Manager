@@ -16,8 +16,9 @@ public class Keyboard extends Asset{
 
     @Override
     public void showAsset() {
-        System.out.println("Code : " + this.getCode() + ", brand : " + this.brand +
-                ", switches: " + this.switches);
+        super.showAsset();
+        System.out.println("\nCharacteristics :\nBrand : " + getBrand() + "\nWireless : " + getWireless() + "\nSwitches : "
+                + getSwitches());
     }
 
     @Override
