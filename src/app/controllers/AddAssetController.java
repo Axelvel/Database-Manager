@@ -1,5 +1,6 @@
 package app.controllers;
 
+import classes.Controller;
 import app.Model;
 import app.Type;
 import classes.Computer;

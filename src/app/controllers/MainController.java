@@ -1,6 +1,8 @@
 package app.controllers;
 
+import classes.Controller;
 import app.Model;
+import classes.Asset;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,6 +35,7 @@ public class MainController extends Controller implements Initializable {
         dataList.getItems().clear();
         this.dataModel.database.getDatabase().forEach(asset -> {
             dataList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
+
         });
     }
 
@@ -64,11 +67,12 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private void updateAsset() throws Exception {
         int index = getIndex();
-
-        Stage window = (Stage) root.getScene().getWindow();
-        Controller controller = new UpdateAssetController(dataModel, index);
-        changeScene(window, "../views/updateAssetView.fxml", controller, 400, 600);
-
+        if (index != -1) {
+            Asset asset = dataModel.database.getDatabase().get(index);
+            Stage window = (Stage) root.getScene().getWindow();
+            Controller controller = new UpdateAssetController(dataModel, asset);
+            changeScene(window, "../views/updateAssetView.fxml", controller, 400, 600);
+        }
     }
 
     @FXML

@@ -7,7 +7,7 @@
 <GridPane fx:id="root" alignment="center" hgap="10" prefHeight="607.0" prefWidth="407.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
     <VBox alignment="CENTER" prefHeight="506.0" prefWidth="331.0" spacing="20">
-        <Label text="Add Asset" />
+        <Label text="Update Asset" />
         <HBox prefHeight="19.0" prefWidth="238.0">
             <children>
                 <RadioButton fx:id="typeComputer" mnemonicParsing="false" selected="true" text="Computer" />
@@ -38,9 +38,13 @@
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="OS" />
         <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
-                <RadioButton fx:id="osToggle1" mnemonicParsing="false" selected="true" text="Windows" />
-                <RadioButton fx:id="osToggle2" mnemonicParsing="false" text="Linux" />
-                <RadioButton fx:id="osToggle3" mnemonicParsing="false" text="MacOS" />
+                <RadioButton fx:id="osToggle1" mnemonicParsing="false" selected="true" text="Windows">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="osGroup"/>
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="osToggle2" mnemonicParsing="false" text="Linux" toggleGroup="$osGroup" />
+                <RadioButton fx:id="osToggle3" mnemonicParsing="false" text="MacOS" toggleGroup="$osGroup"/>
             </children></HBox>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Memory" />
         <TextField fx:id="memoryTextField" />

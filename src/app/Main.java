@@ -1,7 +1,7 @@
 package app;
 
-import app.controllers.Controller;
 import app.controllers.LoginController;
+import classes.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

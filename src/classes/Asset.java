@@ -2,11 +2,13 @@ package classes;
 
 import app.Type;
 
+
 /**
  * Abstract class representing an asset
  * Each assets owns a code, composed of the acronyme of its type and a number,
  * a type, a status and an availability
  */
+
 public abstract class Asset {
 
     private String code;
@@ -35,11 +37,21 @@ public abstract class Asset {
     public void setStatus(String status) { this.status = status; }
     public void setAvailability(boolean available) { this.availability = available; }
 
+
     /**VIRTUAL METHODS**/
+
+    //Getters
     public String getBrand(){return null;}
     public String getOs(){return null;}
     public int getMemory(){return 0;}
     public int getRam(){return 0;}
     public String getSwitches(){return null;}
     public boolean getWireless(){return false;}
+
+    //Setters
+    public void setOs(String os){};
+    public void setBrand(String brand){};
+    public void setMemory(int memory){};
+    public void setRam(int ram) {};
+
 }

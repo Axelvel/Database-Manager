@@ -1,5 +1,6 @@
 package app.controllers;
 
+import classes.Controller;
 import app.Model;
 import classes.User;
 import javafx.fxml.FXML;

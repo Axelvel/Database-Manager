@@ -1,5 +1,6 @@
 package app.controllers;
 
+import classes.Controller;
 import app.Model;
 import classes.Asset;
 import javafx.fxml.FXML;
@@ -8,13 +9,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class UpdateAssetController extends Controller {
+import javafx.fxml.Initializable;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    private int index;
+public class UpdateAssetController extends Controller implements Initializable {
 
-    public UpdateAssetController(Model dataModel, int index) {
+    private Asset asset;
+
+    public UpdateAssetController(Model dataModel, Asset asset) {
         super(dataModel);
-        this.index = index;
+        this.asset = asset;
     }
 
     @FXML
@@ -41,9 +46,26 @@ public class UpdateAssetController extends Controller {
     @FXML
     private RadioButton availabilityToggle2;
 
-    public UpdateAssetController(Model dataModel) {
-        super(dataModel);
-    }
+    @FXML
+    private RadioButton osToggle1;
+
+    @FXML
+    private RadioButton osToggle2;
+
+    @FXML
+    private RadioButton osToggle3;
+
+    @FXML
+    private RadioButton typeComputer;
+
+    @FXML
+    private TextField brandTextField;
+
+    @FXML
+    private TextField memoryTextField;
+
+    @FXML
+    private TextField ramTextField;
 
 
     @FXML
@@ -56,9 +78,8 @@ public class UpdateAssetController extends Controller {
     @FXML
     public void updateAsset() throws Exception {
 
-        String code = dataModel.database.getDatabase().get(index).getCode();
+        String code = asset.getCode();
         String status = null;
-
 
         if (statusToggle1.isSelected()) {
             status = "Excellent";
@@ -71,15 +92,79 @@ public class UpdateAssetController extends Controller {
         }
         boolean available = availabilityToggle1.isSelected();
 
-        if (code != null) {
+        //Computer
+        String brand = brandTextField.getText();
 
-            Asset asset = dataModel.database.getDatabase().get(index);
+        int memory = 0;
+        if (memoryTextField.getText() != null) {
+             memory = Integer.parseInt(memoryTextField.getText());
+        }
+        int ram = 0;
+        if (ramTextField.getText() != null) {
+            ram = Integer.parseInt(ramTextField.getText());
+        }
+
+        String os = null;
+        if(osToggle1.isSelected()){
+            os = "Windows";
+        }else if(osToggle2.isSelected()){
+            os = "Linux";
+        }else if(osToggle3.isSelected()){
+            os = "MacOS";
+        }
+
+        if (code != null) { //TODO: Type check
 
             asset.setAvailability(available);
             asset.setStatus(status);
 
+
+            //Computer
+            asset.setBrand(brand);
+            asset.setOs(os);
+            asset.setMemory(memory);
+            asset.setRam(ram);
+
             goBack();
         }
+
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        if (asset.isAvailable()) {
+            availabilityToggle1.setSelected(true);
+        } else {
+            availabilityToggle2.setSelected(true);
+        }
+
+        String status = asset.getStatus();
+
+        switch (status) {
+            case "Excellent" -> statusToggle1.setSelected(true);
+            case "Good" -> statusToggle2.setSelected(true);
+            case "Okay" -> statusToggle3.setSelected(true);
+            case "Bad" -> statusToggle4.setSelected(true);
+        }
+
+        String os = asset.getOs();
+
+        switch (os) {
+            case "Window" -> osToggle1.setSelected(true);
+            case "Linux" -> osToggle2.setSelected(true);
+            case "MacOS" -> osToggle3.setSelected(true);
+        }
+
+        brandTextField.setText(asset.getBrand());
+
+
+        String ram = String.valueOf(asset.getRam());
+        String memory = String.valueOf(asset.getMemory());
+
+        memoryTextField.setText(memory);
+        ramTextField.setText(ram);
 
     }
 }

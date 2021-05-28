@@ -29,11 +29,19 @@ public class Computer extends Asset {
                 + this.memory + "\nRAM : " + this.ram);
     }
 
+    //Getters
     @Override
     public String getOs(){ return this.os; }
-    public String getBrand(){return this.brand;}
-    public int getMemory(){return this.memory;}
-    public int getRam(){return this.ram;}
+    public String getBrand(){ return this.brand; }
+    public int getMemory(){ return this.memory; }
+    public int getRam(){ return this.ram; }
+
+    //Setters
+    @Override
+    public void setOs(String os) { this.os = os; }
+    public void setBrand(String brand) { this.brand = brand; }
+    public void setMemory(int memory) { this.memory = memory; }
+    public void setRam(int ram) { this.ram = ram; }
 
 
 }
