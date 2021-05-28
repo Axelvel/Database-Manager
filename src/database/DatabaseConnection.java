@@ -154,13 +154,15 @@ public class DatabaseConnection {
     public void refreshDatabase() throws SQLException {
         inventory.clear();
 
+        refreshUsers();
         refreshComputers();
         refreshKeyboards();
-
-        /*KEYBOARDS*/
-
     }
 
+    /**
+     * go through all the content of the computers_table and add them in the inventory
+     * @throws SQLException : exception
+     */
     public void refreshComputers() throws SQLException {
         ResultSet rs = query("SELECT computers_table.computer_code, " +
                 "computers_table.computer_brand, computers_table.computer_os, computers_table.computer_memory, " +
@@ -181,6 +183,10 @@ public class DatabaseConnection {
         }
     }
 
+    /**
+     * go through all the content of the keyboards_table and add them in the inventory
+     * @throws SQLException : exception
+     */
     public void refreshKeyboards() throws SQLException {
         ResultSet rs = query("SELECT keyboards_table.keyboard_code, keyboards_table.keyboard_brand, " +
                 "keyboards_table.keyboard_wireless, keyboards_table.keyboard_switches, assets_table.asset_status, " +
@@ -199,4 +205,44 @@ public class DatabaseConnection {
         }
     }
 
+    /**
+     * add a new user to users_table
+     * @throws SQLException : exception
+     */
+    public void addUser(User u) throws SQLException {
+        String sql = "INSERT INTO users_table(user_username,user_password,user_name,user_last_name,user_status) VALUES (?,?,?,?,?);";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1, u.getUsername());
+        pstmt.setString(2,u.getPassword());
+        pstmt.setString(3, u.getName());
+        pstmt.setString(4, u.getLastName());
+        pstmt.setBoolean(5,u.isAdmin());
+        pstmt.executeUpdate();
+    }
+
+    /**
+     * delete a user from users_table
+     * @throws SQLException : exception
+     */
+    public void deleteUser(User u) throws SQLException {
+        String sql = "DELETE FROM users_table WHERE user_username = '" + u.getUsername() +"'";
+        statement.executeUpdate(sql);
+    }
+
+    /**
+     * go through all the content of the users_table
+     * @throws SQLException : exception
+     */
+    public void refreshUsers() throws SQLException {
+        ResultSet rs = query("SELECT * from users_table");
+        while(rs.next()){
+            String username = rs.getString("user_username");
+            String password = rs.getString("user_password");
+            String name = rs.getString("user_name");
+            String lastName = rs.getString("user_last_name");
+            Boolean admin = rs.getBoolean("user_status");
+            User u = new User(username,password,name,lastName,admin);
+            users.addUser(u);
+        }
+    }
 }

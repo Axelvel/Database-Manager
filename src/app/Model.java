@@ -20,13 +20,6 @@ public class Model {
     private DatabaseConnection databaseConnection = new DatabaseConnection("src/database/ap4b_db.db",inventory,users);
 
     public Model() throws SQLException {
-        // Creating new users
-        User user1 = new User("abc", "pass", "Jean", "Robert", true);
-        User user2 = new User("xyz", "word", "Jeanne", "Roberta", true);
-
-        users.addUser(user1);
-        users.addUser(user2);
-
         // DATABASE CONNECTION AND INITIALIZATION
         databaseConnection.connect();
         databaseConnection.refreshDatabase();

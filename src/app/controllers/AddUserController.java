@@ -50,6 +50,7 @@ public class AddUserController extends Controller {
 
         User user = new User(username, password,  name, lastname, status);
         dataModel.getUsers().addUser(user);
+        dataModel.getDb().addUser(user);
         goBack();
     }
 

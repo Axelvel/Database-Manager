@@ -20,8 +20,10 @@ public class User {
     }
 
     public String getName() {
-        return this.name + " " + this.lastname;
+        return this.name;
     }
+
+    public String getLastName() {return this.lastname;}
 
     public String getUsername() {
         return this.username;
