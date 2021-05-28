@@ -1,7 +1,7 @@
 package app;
 
 import classes.Computer;
-import classes.Database;
+import classes.Inventory;
 import classes.User;
 import classes.Users;
 import database.DatabaseConnection;

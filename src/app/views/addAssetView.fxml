@@ -21,8 +21,8 @@
                 </toggleGroup>
             </RadioButton>
             <RadioButton fx:id="statusToggle2" text="Good" toggleGroup="$statusGroup" />
-         <RadioButton fx:id="statusToggle3" mnemonicParsing="false" text="Okay" />
-         <RadioButton fx:id="statusToggle4" mnemonicParsing="false" text="Bad" />
+         <RadioButton fx:id="statusToggle3" text="Okay" toggleGroup="$statusGroup"/>
+         <RadioButton fx:id="statusToggle4" text="Bad" toggleGroup="$statusGroup"/>
         </HBox>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand" />
       <TextField fx:id="brandTextField" />

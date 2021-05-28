@@ -9,10 +9,9 @@ public class AssetCell extends ListCell<Asset> {
         super.updateItem(asset, empty);
         if (empty) {
             setText(null);
-            setGraphic(null);
         } else {
             setText(" (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
-            setGraphic(null);
         }
+        setGraphic(null);
     }
 }
