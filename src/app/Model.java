@@ -1,7 +1,7 @@
 package app;
 
 import classes.Computer;
-import classes.Database;
+import classes.Inventory;
 import classes.User;
 import classes.Users;
 import database.DatabaseConnection;
@@ -16,14 +16,13 @@ import java.sql.SQLException;
 public class Model {
 
     public Users users = new Users();
-    public Database database = new Database();
-    private final DatabaseConnection assetsDbConnection = new DatabaseConnection("src/database/ap4b_db.db");
-
+    public Inventory inventory = new Inventory();
+    private DatabaseConnection assetsDbConnection = new DatabaseConnection("src/database/ap4b_db.db");
 
     public Model() throws SQLException {
         // Creating new users
-        User user1 = new User(1, "abc", "pass", "Jean", "Robert", true);
-        User user2 = new User(2, "xyz", "word", "Jeanne", "Roberta", true);
+        User user1 = new User("abc", "pass", "Jean", "Robert", true);
+        User user2 = new User("xyz", "word", "Jeanne", "Roberta", true);
 
         users.addUser(user1);
         users.addUser(user2);
@@ -43,7 +42,7 @@ public class Model {
      * @throws SQLException : sql exception
      */
     public void refreshDatabase() throws SQLException {
-        database.clear();
+        inventory.clear();
 
         /*COMPUTERS*/
         ResultSet rs = assetsDbConnection.query("SELECT computers_table.computer_code, " +
@@ -61,7 +60,7 @@ public class Model {
             String status = rs.getString("asset_status");
             boolean availability = rs.getBoolean("asset_availability");
             Computer c = new Computer(code, Type.COMPUTER, status, availability, brand, os, memory, ram);
-            database.addAsset(c);
+            inventory.addAsset(c);
         }
 
         /*KEYBOARDS*/

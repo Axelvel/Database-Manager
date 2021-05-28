@@ -16,8 +16,8 @@ public class Users {
         users.add(user);
     }
 
-    public void deleteUser(int id) {
-        users.removeIf(user -> (user.getId() == id));
+    public void deleteUser(String username) {
+        users.removeIf(user -> (user.getUsername() == username));
     }
 
     public void showUserslist() {
@@ -26,20 +26,20 @@ public class Users {
         });
     }
 
-    public int getUserId(String username) {
+    public String getUserUsername(String username) {
 
         for(int i = 0; i < this.users.size(); i++) {
             if (this.users.get(i).getUsername().equals(username)) {
-                return users.get(i).getId();
+                return users.get(i).getUsername();
             }
         }
-        return 0;
+        return null;
     }
 
-    public boolean passwordMatch(int id, String password) {
+    public boolean passwordMatch(String username, String password) {
 
         for (int i = 0; i < this.users.size(); i++) {
-            if (users.get(i).getId() == id) {
+            if (users.get(i).getUsername().equals(username)) {
                 if (users.get(i).getPassword().equals(password)) {
                     return true;
                 }
