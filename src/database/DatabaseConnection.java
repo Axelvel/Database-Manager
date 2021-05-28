@@ -1,10 +1,7 @@
 package database;
 
 import app.Type;
-import classes.Asset;
-import classes.Computer;
-import classes.Inventory;
-import classes.Users;
+import classes.*;
 
 import java.sql.*;
 
@@ -77,7 +74,6 @@ public class DatabaseConnection {
 
     /**
      * Method used in order to add a new asset to the sql database
-     * TODO
      */
     public void addAsset(Asset asset) throws SQLException {
         String sql = "INSERT INTO assets_table(asset_code,asset_type,asset_status,asset_availability) VALUES(?,?,?,?)";
@@ -89,29 +85,65 @@ public class DatabaseConnection {
         pstmt.executeUpdate();
 
         if (asset.getType() == Type.COMPUTER){
-            String sqlType = "INSERT INTO computers_table(computer_code,computer_brand,computer_os,computer_memory,computer_ram) VALUES(?,?,?,?,?)";
-            PreparedStatement pstmtType = connection.prepareStatement(sqlType);
-            pstmtType.setString(1, asset.getCode());
-            pstmtType.setString(2, asset.getBrand());
-            pstmtType.setString(3, asset.getOs());
-            pstmtType.setInt(4, asset.getMemory());
-            pstmtType.setInt(5, asset.getRam());
-            pstmtType.executeUpdate();
+            addComputer(asset);
+        } else if(asset.getType() == Type.KEYBOARD){
+            addKeyboard(asset);
         }
     }
 
     /**
-     * Method used in order to deleter an asset from the sqlite database
-     * @param asset : asset the user wants to deleter
+     * Method used in order to add a new computer to the sql database
+     */
+    public void addComputer(Asset c) throws SQLException {
+        String sqlType = "INSERT INTO computers_table(computer_code,computer_brand,computer_os,computer_memory,computer_ram) VALUES(?,?,?,?,?)";
+        PreparedStatement pstmtType = connection.prepareStatement(sqlType);
+        pstmtType.setString(1, c.getCode());
+        pstmtType.setString(2, c.getBrand());
+        pstmtType.setString(3, c.getOs());
+        pstmtType.setInt(4, c.getMemory());
+        pstmtType.setInt(5, c.getRam());
+        pstmtType.executeUpdate();
+    }
+
+    /**
+     * Method used in order to add a new keyboard to the sql database
+     */
+    public void addKeyboard(Asset k) throws SQLException{
+        String sqlType = "INSERT INTO computers_table(keyboard_code,keyboard_brand,keyboard_wireless,keyboard_switches) VALUES(?,?,?,?)";
+        PreparedStatement pstmtType = connection.prepareStatement(sqlType);
+        pstmtType.setString(1, k.getCode());
+        pstmtType.setString(2, k.getBrand());
+        pstmtType.setBoolean(3, k.getWireless());
+        pstmtType.setString(4, k.getSwitches());
+        pstmtType.executeUpdate();
+    }
+
+    /**
+     * Method used in order to delete an asset from the sqlite database
+     * @param asset : asset the user wants to delete
      * @throws SQLException
      */
     public void deleteAsset(Asset asset) throws SQLException {
         String sql ="DELETE FROM assets_table WHERE asset_code = '" + asset.getCode() +"'";
         statement.executeUpdate(sql);
         if (asset.getType() == Type.COMPUTER){
-            String sql_2 ="DELETE FROM computers_table WHERE computer_code = '" + asset.getCode() +"'";
-            statement.executeUpdate(sql_2);
+            deleteAssetType("computers_table","computer_code",asset.getCode());
+        } else if (asset.getType() == Type.KEYBOARD){
+            deleteAssetType("keyboards_table","keyboard_code",asset.getCode());
         }
+    }
+
+    /**
+     * Method used in order to delete any asset from the specific table in
+     * the sql database
+     * @param table : name of the table
+     * @param type_code : name of the column
+     * @param code : code of the asset
+     * @throws SQLException : exception
+     */
+    public void deleteAssetType(String table, String type_code, String code) throws SQLException {
+        String sql = "DELETE FROM "+table+" WHERE "+type_code+ " = '" + code + "'";
+        statement.executeUpdate(sql);
     }
 
     /**
@@ -122,7 +154,14 @@ public class DatabaseConnection {
     public void refreshDatabase() throws SQLException {
         inventory.clear();
 
-        /*COMPUTERS*/
+        refreshComputers();
+        refreshKeyboards();
+
+        /*KEYBOARDS*/
+
+    }
+
+    public void refreshComputers() throws SQLException {
         ResultSet rs = query("SELECT computers_table.computer_code, " +
                 "computers_table.computer_brand, computers_table.computer_os, computers_table.computer_memory, " +
                 "computers_table.computer_ram, assets_table.asset_status, assets_table.asset_availability " +
@@ -140,10 +179,24 @@ public class DatabaseConnection {
             Computer c = new Computer(code, Type.COMPUTER, status, availability, brand, os, memory, ram);
             inventory.addAsset(c);
         }
-
-        /*KEYBOARDS*/
-
     }
 
+    public void refreshKeyboards() throws SQLException {
+        ResultSet rs = query("SELECT keyboards_table.keyboard_code, keyboards_table.keyboard_brand, " +
+                "keyboards_table.keyboard_wireless, keyboards_table.keyboard_switches, assets_table.asset_status, " +
+                "assets_table.asset_availability FROM assets_table INNER JOIN keyboards_table ON " +
+                "assets_table.asset_code = keyboards_table.keyboard_code;\n");
+
+        while(rs.next()){
+            String code = rs.getString("keyboard_code");
+            String brand = rs.getString("keyboard_brand");
+            Boolean wireless = rs.getBoolean("keyboard_wireless");
+            String switches = rs.getString("keyboard_switches");
+            String status = rs.getString("asset_status");
+            boolean availability = rs.getBoolean("asset_availability");
+            Keyboard k = new Keyboard(code,Type.KEYBOARD,status,availability,brand,wireless,switches);
+            inventory.addAsset(k);
+        }
+    }
 
 }
