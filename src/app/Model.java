@@ -1,7 +1,7 @@
 package app;
 
 import classes.Computer;
-import classes.Inventory;
+import classes.Database;
 import classes.User;
 import classes.Users;
 import database.DatabaseConnection;
@@ -17,6 +17,7 @@ public class Model {
 
     public Users users = new Users();
     public Inventory inventory = new Inventory();
+    public User currentUser;
     private DatabaseConnection assetsDbConnection = new DatabaseConnection("src/database/ap4b_db.db");
 
 

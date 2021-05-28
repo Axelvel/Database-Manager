@@ -2,6 +2,7 @@ package app.controllers;
 
 import classes.Controller;
 import app.Model;
+import classes.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -44,6 +45,7 @@ public class LoginController extends Controller implements Initializable {
 
         if (dataModel.users.passwordMatch(id, password)) {
             System.out.println("Login!");
+            dataModel.currentUser = dataModel.users.getUsers().get(id-1);
             gotoProfile();
         } else {
             System.out.println("Refused");
