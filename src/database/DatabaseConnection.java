@@ -196,7 +196,7 @@ public class DatabaseConnection {
         while(rs.next()){
             String code = rs.getString("keyboard_code");
             String brand = rs.getString("keyboard_brand");
-            Boolean wireless = rs.getBoolean("keyboard_wireless");
+            boolean wireless = rs.getBoolean("keyboard_wireless");
             String switches = rs.getString("keyboard_switches");
             String status = rs.getString("asset_status");
             boolean availability = rs.getBoolean("asset_availability");
@@ -244,5 +244,10 @@ public class DatabaseConnection {
             User u = new User(username,password,name,lastName,admin);
             users.addUser(u);
         }
+    }
+
+    public int count(String table) throws SQLException {
+        ResultSet rs = query("SELECT COUNT() FROM "+table);
+        return rs.getInt(1);
     }
 }

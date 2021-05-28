@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;
@@ -49,6 +51,9 @@ public class AddAssetController extends Controller {
     private RadioButton typeComputer;
 
     @FXML
+    private RadioButton typeKeyboard;
+
+    @FXML
     private TextField brandTextField;
 
     @FXML
@@ -57,6 +62,14 @@ public class AddAssetController extends Controller {
     @FXML
     private TextField ramTextField;
 
+    @FXML
+    private VBox computerAttributes;
+
+    @FXML
+    private VBox keyboardAttributes;
+
+    @FXML
+    private StackPane attributesStack;
 
     @FXML
     public void goBack() throws Exception {
@@ -86,10 +99,8 @@ public class AddAssetController extends Controller {
         if(typeComputer.isSelected()){
 
             //count the number of computers in the database
-            String code;
-            ResultSet rs = dataModel.getDb().query("SELECT COUNT() FROM computers_table");
-            int nbComputers = rs.getInt(1) + 1;
-            code = "COMP" + nbComputers;
+            int nbComputers = dataModel.getDb().count("computers_table") + 1;
+            String code = "COMP" + nbComputers;
 
             String os = null;
             if(osToggle1.isSelected()){
@@ -106,8 +117,25 @@ public class AddAssetController extends Controller {
             dataModel.getDb().addAsset(c);
             dataModel.getDb().refreshDatabase();
             goBack();
+        } else if(typeKeyboard.isSelected()){
+            /*
+            int nbComputers = dataModel.getDb().count("keyboards_table") + 1;
+            String code = "KEYB" + nbComputers;*/
         }
+    }
 
+    public void switchComputersAttribute(){
+        computerAttributes.setVisible(true);
+        computerAttributes.toFront();
+        /*computerAttributes.setVisible(true);
+        keyboardAttributes.setVisible(false);*/
+    }
+
+    public void switchKeyboardsAttribute(){
+        keyboardAttributes.setVisible(true);
+        keyboardAttributes.toFront();
+        /*keyboardAttributes.setVisible(true);
+        computerAttributes.setVisible(false);*/
     }
 
 }
