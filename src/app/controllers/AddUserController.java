@@ -37,8 +37,8 @@ public class AddUserController extends Controller {
 
     @FXML
     public void addUser() throws Exception {
-        int size = dataModel.users.getUsers().size();
-        int id = dataModel.users.getUsers().get(size - 1).getId() + 1;
+        int size = dataModel.getUsers().getUsers().size();
+        //int id = dataModel.users.getUsers().get(size - 1).getId() + 1;
 
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -48,8 +48,9 @@ public class AddUserController extends Controller {
 
         boolean status = statusToggle2.isSelected();
 
-        User user = new User(id, username, password,  name, lastname, status);
-        dataModel.users.addUser(user);
+        User user = new User(username, password,  name, lastname, status);
+        dataModel.getUsers().addUser(user);
+        dataModel.getDb().addUser(user);
         goBack();
     }
 

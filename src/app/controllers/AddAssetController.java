@@ -104,7 +104,7 @@ public class AddAssetController extends Controller {
                     Integer.parseInt(memoryTextField.getText()),Integer.parseInt(ramTextField.getText()));
 
             dataModel.getDb().addAsset(c);
-            dataModel.refreshDatabase();
+            dataModel.getDb().refreshDatabase();
             goBack();
         }
 

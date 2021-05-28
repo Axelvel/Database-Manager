@@ -9,8 +9,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.sql.*;
-
 public class Main extends Application {
 
     @Override
@@ -35,7 +33,7 @@ public class Main extends Application {
 
         }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args){
         launch(args);
     }
 }

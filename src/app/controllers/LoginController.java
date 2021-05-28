@@ -40,12 +40,16 @@ public class LoginController extends Controller implements Initializable {
     public void login() throws Exception {
 
         String username = usernameField.getText();
-        int id = this.dataModel.users.getUserId(username);
+        //String username_2 = this.dataModel.users.getUserUsername(username);
         String password = passwordField.getText();
 
-        if (dataModel.users.passwordMatch(id, password)) {
+
+        if (dataModel.getUsers().passwordMatch(username, password)) {
             System.out.println("Login!");
-            dataModel.currentUser = dataModel.users.getUsers().get(id-1);
+            //dataModel.getCurrentUser() = dataModel.getUsers().getUsers().get(0);
+            int userIndex = dataModel.getUsers().getUserIndex(username);
+            User user = dataModel.getUsers().getUsers().get(userIndex);
+            dataModel.setCurrentUser(user);
             gotoProfile();
         } else {
             System.out.println("Refused");
