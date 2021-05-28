@@ -84,6 +84,7 @@ public class DatabaseConnection {
         pstmt.setInt(4, 1);
         pstmt.executeUpdate();
 
+
         if (asset.getType() == Type.COMPUTER){
             addComputer(asset);
         } else if(asset.getType() == Type.KEYBOARD){
@@ -109,7 +110,7 @@ public class DatabaseConnection {
      * Method used in order to add a new keyboard to the sql database
      */
     public void addKeyboard(Asset k) throws SQLException{
-        String sqlType = "INSERT INTO computers_table(keyboard_code,keyboard_brand,keyboard_wireless,keyboard_switches) VALUES(?,?,?,?)";
+        String sqlType = "INSERT INTO keyboards_table(keyboard_code,keyboard_brand,keyboard_wireless,keyboard_switches) VALUES(?,?,?,?)";
         PreparedStatement pstmtType = connection.prepareStatement(sqlType);
         pstmtType.setString(1, k.getCode());
         pstmtType.setString(2, k.getBrand());

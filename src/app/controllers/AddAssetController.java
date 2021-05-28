@@ -4,6 +4,7 @@ import classes.Controller;
 import app.Model;
 import app.Type;
 import classes.Computer;
+import classes.Keyboard;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -46,6 +47,18 @@ public class AddAssetController extends Controller {
 
     @FXML
     private RadioButton osToggle3;
+
+    @FXML
+    private RadioButton wireless;
+
+    @FXML
+    private RadioButton switchesMechanical;
+
+    @FXML
+    private RadioButton switchesMembrane;
+
+    @FXML
+    private RadioButton switchesRubber;
 
     @FXML
     private RadioButton typeComputer;
@@ -118,24 +131,38 @@ public class AddAssetController extends Controller {
             dataModel.getDb().refreshDatabase();
             goBack();
         } else if(typeKeyboard.isSelected()){
-            /*
             int nbComputers = dataModel.getDb().count("keyboards_table") + 1;
-            String code = "KEYB" + nbComputers;*/
+            String code = "KEYB" + nbComputers;
+
+            String switches = null;
+            if(switchesMechanical.isSelected()){
+                switches = "Mechanical";
+            } else if(switchesMembrane.isSelected()){
+                switches = "Membrane";
+            } else if(switchesRubber.isSelected()){
+                switches = "Rubber Domes";
+            }
+
+            boolean isWireless = false;
+            if(wireless.isSelected()){
+                isWireless = true;
+            }
+
+            Keyboard k = new Keyboard(code,Type.KEYBOARD,status,true,brandTextField.getText(),isWireless,switches);
+            dataModel.getDb().addAsset(k);
+            dataModel.getDb().refreshDatabase();
+            goBack();
         }
     }
 
     public void switchComputersAttribute(){
         computerAttributes.setVisible(true);
         computerAttributes.toFront();
-        /*computerAttributes.setVisible(true);
-        keyboardAttributes.setVisible(false);*/
     }
 
     public void switchKeyboardsAttribute(){
         keyboardAttributes.setVisible(true);
         keyboardAttributes.toFront();
-        /*keyboardAttributes.setVisible(true);
-        computerAttributes.setVisible(false);*/
     }
 
 }
