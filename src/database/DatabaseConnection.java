@@ -106,20 +106,5 @@ public class DatabaseConnection {
         }
     }
 
-    /*DEBUG METHODS*/
-    public void printComputers() throws SQLException {
-        String sql = "SELECT * FROM computers_table";
-        ResultSet result = statement.executeQuery(sql);
-        while(result.next()){
-            System.out.println(result.getString("computer_code"));
-        }
-    }
 
-    public void printAssets() throws SQLException {
-        String sql = "SELECT * FROM assets_table";
-        ResultSet result = statement.executeQuery(sql);
-        while(result.next()){
-            System.out.println(result.getString("asset_code"));
-        }
-    }
 }
