@@ -2,6 +2,9 @@ package database;
 
 import app.Type;
 import classes.Asset;
+import classes.Computer;
+import classes.Inventory;
+import classes.Users;
 
 import java.sql.*;
 
@@ -14,12 +17,17 @@ public class DatabaseConnection {
     private Connection connection = null;
     private Statement statement = null;
 
+    private Inventory inventory;
+    private Users users;
+
     /**
      * Constructor
      * @param dbPath : file path to the database
      */
-    public DatabaseConnection(String dbPath){
+    public DatabaseConnection(String dbPath, Inventory invt, Users users){
         this.dbPath = dbPath;
+        this.inventory = invt;
+        this.users = users;
     }
 
     /**
@@ -104,6 +112,37 @@ public class DatabaseConnection {
             String sql_2 ="DELETE FROM computers_table WHERE computer_code = '" + asset.getCode() +"'";
             statement.executeUpdate(sql_2);
         }
+    }
+
+    /**
+     * refresh the database according to the content of the sqlite database
+     * go througn every table in the sqlite database and add each element in the database
+     * @throws SQLException : sql exception
+     */
+    public void refreshDatabase() throws SQLException {
+        inventory.clear();
+
+        /*COMPUTERS*/
+        ResultSet rs = query("SELECT computers_table.computer_code, " +
+                "computers_table.computer_brand, computers_table.computer_os, computers_table.computer_memory, " +
+                "computers_table.computer_ram, assets_table.asset_status, assets_table.asset_availability " +
+                "FROM assets_table INNER JOIN computers_table ON " +
+                "assets_table.[asset_Code] = computers_table.[computer_Code];\n");
+
+        while(rs.next()) {
+            String code = rs.getString("computer_code");
+            String brand = rs.getString("computer_brand");
+            String os = rs.getString("computer_os");
+            int memory = rs.getInt("computer_memory");
+            int ram = rs.getInt("computer_ram");
+            String status = rs.getString("asset_status");
+            boolean availability = rs.getBoolean("asset_availability");
+            Computer c = new Computer(code, Type.COMPUTER, status, availability, brand, os, memory, ram);
+            inventory.addAsset(c);
+        }
+
+        /*KEYBOARDS*/
+
     }
 
 

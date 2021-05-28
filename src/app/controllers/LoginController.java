@@ -42,7 +42,7 @@ public class LoginController extends Controller implements Initializable {
         //String username_2 = this.dataModel.users.getUserUsername(username);
         String password = passwordField.getText();
 
-        if (dataModel.users.passwordMatch(username, password)) {
+        if (dataModel.getUsers().passwordMatch(username, password)) {
             System.out.println("Login!");
             gotoProfile();
         } else {
