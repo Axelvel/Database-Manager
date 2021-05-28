@@ -33,7 +33,7 @@ public class MainController extends Controller implements Initializable {
 
     public void refreshDataList() throws SQLException {
         dataList.getItems().clear();
-        this.dataModel.database.getDatabase().forEach(asset -> {
+        this.dataModel.inventory.getDatabase().forEach(asset -> {
             dataList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
 
         });
@@ -58,7 +58,7 @@ public class MainController extends Controller implements Initializable {
     private void deleteAsset() throws SQLException {
         int index = getIndex();
         if (index != -1) {
-            this.dataModel.getDb().deleteAsset(this.dataModel.database.getDatabase().get(index));
+            this.dataModel.getDb().deleteAsset(this.dataModel.inventory.getDatabase().get(index));
             dataModel.refreshDatabase();
             refreshDataList();
         }
@@ -68,7 +68,7 @@ public class MainController extends Controller implements Initializable {
     private void updateAsset() throws Exception {
         int index = getIndex();
         if (index != -1) {
-            Asset asset = dataModel.database.getDatabase().get(index);
+            Asset asset = dataModel.inventory.getDatabase().get(index);
             Stage window = (Stage) root.getScene().getWindow();
             Controller controller = new UpdateAssetController(dataModel, asset);
             changeScene(window, "../views/updateAssetView.fxml", controller, 400, 600);

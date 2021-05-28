@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * class used in order to store the assets found in the sqlite database
  */
-public class Database {
+public class Inventory {
 
     private List<Asset> database = new ArrayList<Asset>();
 
