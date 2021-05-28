@@ -17,6 +17,7 @@ public class Model {
 
     public Users users = new Users();
     public Database database = new Database();
+    public User currentUser;
     private DatabaseConnection assetsDbConnection = new DatabaseConnection("src/database/ap4b_db.db");
 
 

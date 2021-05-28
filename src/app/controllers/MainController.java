@@ -7,6 +7,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -26,6 +27,9 @@ public class MainController extends Controller implements Initializable {
     private GridPane root;
 
     @FXML
+    private Label label;
+
+    @FXML
     private ListView dataList;
 
     @FXML
@@ -39,9 +43,16 @@ public class MainController extends Controller implements Initializable {
         });
     }
 
+    public void refreshLabel() {
+        this.label.setText("Welcome, " + dataModel.currentUser.getName());
+    }
+
 
     @FXML
     private void goToLogin() throws Exception {
+
+        dataModel.currentUser = null;
+
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new LoginController(dataModel);
         changeScene(window, "../views/loginView.fxml", controller, 300, 275);
@@ -84,6 +95,8 @@ public class MainController extends Controller implements Initializable {
 
 
 
+
+
     @FXML
     private int getIndex() {
         int index = dataList.getSelectionModel().getSelectedIndex();
@@ -96,10 +109,12 @@ public class MainController extends Controller implements Initializable {
         Task<Void> task = new Task<>() {
             @Override public Void call() throws SQLException {
                 refreshDataList();
+                refreshLabel();
                 return null;
             }
         };
 
         new Thread(task).start();
+
     }
 }
