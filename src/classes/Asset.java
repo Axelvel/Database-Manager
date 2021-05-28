@@ -5,7 +5,7 @@ import app.Type;
 
 /**
  * Abstract class representing an asset
- * Each assets owns a code, composed of the acronyme of its type and a number,
+ * Each assets owns a code, composed of the acronym of its type and a number,
  * a type, a status and an availability
  */
 
