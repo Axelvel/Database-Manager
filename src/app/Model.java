@@ -17,7 +17,7 @@ public class Model {
 
     public Users users = new Users();
     public Database database = new Database();
-    private DatabaseConnection assetsDbConnection = new DatabaseConnection("src/database/ap4b_db.db");
+    private final DatabaseConnection assetsDbConnection = new DatabaseConnection("src/database/ap4b_db.db");
 
 
     public Model() throws SQLException {
@@ -40,15 +40,15 @@ public class Model {
     /**
      * refresh the database according to the content of the sqlite database
      * go througn every table in the sqlite database and add each element in the database
-     * @throws SQLException
+     * @throws SQLException : sql exception
      */
     public void refreshDatabase() throws SQLException {
         database.clear();
 
-        /**COMPUTERS**/
+        /*COMPUTERS*/
         ResultSet rs = assetsDbConnection.query("SELECT computers_table.computer_code, " +
                 "computers_table.computer_brand, computers_table.computer_os, computers_table.computer_memory, " +
-                "computers_table.computer_ram, assets_table.asset_status, assets_table.asset_availability\n" +
+                "computers_table.computer_ram, assets_table.asset_status, assets_table.asset_availability " +
                 "FROM assets_table INNER JOIN computers_table ON " +
                 "assets_table.[asset_Code] = computers_table.[computer_Code];\n");
 
@@ -64,7 +64,7 @@ public class Model {
             database.addAsset(c);
         }
 
-        /**KEYBOARDS**/
+        /*KEYBOARDS*/
 
     }
 

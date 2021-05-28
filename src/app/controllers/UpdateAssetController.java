@@ -15,7 +15,6 @@ public class UpdateAssetController extends Controller {
     public UpdateAssetController(Model dataModel, int index) {
         super(dataModel);
         this.index = index;
-
     }
 
     @FXML

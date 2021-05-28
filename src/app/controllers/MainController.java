@@ -29,7 +29,7 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private Button disconnectButton;
 
-    public void refreshDataList() throws SQLException {
+    public void refreshDataList(){
         dataList.getItems().clear();
         this.dataModel.database.getDatabase().forEach(asset -> {
             dataList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
@@ -64,7 +64,6 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private void updateAsset() throws Exception {
         int index = getIndex();
-        //Asset asset = dataModel.database.getDatabase().get(index);
 
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new UpdateAssetController(dataModel, index);
