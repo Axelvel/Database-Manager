@@ -93,10 +93,6 @@ public class AddAssetController extends Controller {
 
     @FXML
     public void addAsset() throws Exception {
-
-        //TODO : allow different type of assets (maybe divide this function into multiples ?)
-        //TODO : Create controls on every fields
-
         String status = null;
 
         if (statusToggle1.isSelected()) {
