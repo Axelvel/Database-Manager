@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public class Controller {
+public abstract class Controller {
 
     public Model dataModel;
 

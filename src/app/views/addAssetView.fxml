@@ -27,7 +27,6 @@
                <Insets />
             </VBox.margin>
          </Group>
-
            <Text text="STATUS :">
             <font>
                <Font size="20.0" />

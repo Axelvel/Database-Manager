@@ -2,6 +2,7 @@ package app.controllers;
 
 import classes.Controller;
 import app.Model;
+import classes.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -12,7 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class LoginController extends Controller implements Initializable {
+public class LoginController extends Controller {
 
     public LoginController(Model dataModel) {
         super(dataModel);
@@ -42,21 +43,17 @@ public class LoginController extends Controller implements Initializable {
         //String username_2 = this.dataModel.users.getUserUsername(username);
         String password = passwordField.getText();
 
+
         if (dataModel.getUsers().passwordMatch(username, password)) {
             System.out.println("Login!");
+            //dataModel.getCurrentUser() = dataModel.getUsers().getUsers().get(0);
+            int userIndex = dataModel.getUsers().getUserIndex(username);
+            User user = dataModel.getUsers().getUsers().get(userIndex);
+            dataModel.setCurrentUser(user);
             gotoProfile();
         } else {
             System.out.println("Refused");
         }
     }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //TODO: request focus
-        usernameField.setPromptText("Username");
-        passwordField.setPromptText("Password");
-        usernameField.setFocusTraversable(false);
-        passwordField.setFocusTraversable(false);
-    }
 }

@@ -7,11 +7,13 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
 <GridPane
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" fx:id="root" style="-fx-background-color: blue;">
 
     <VBox alignment="CENTER" spacing="20"  prefWidth="500.0">
-        <Label text="Logged in!"/>
+        <Label fx:id="label"/>
         <HBox spacing="20">
             <Button text="Refresh" onAction="#refreshDataList"/>
             <Button text="Add" onAction="#goToAdd"/>
@@ -21,7 +23,17 @@
             <!--<Button text="getIndex" onAction="#getIndex"/>-->
         </HBox>
 
-        <ListView fx:id="dataList" maxWidth="Infinity"/>
+        <TabPane fx:id="managerPane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://www.w3.org/2001/XInclude"
+                 tabClosingPolicy="UNAVAILABLE" maxWidth="Infinity">
+            <Tab fx:id="inventoryPane" text="Inventory">
+                <ListView fx:id="inventoryList" maxWidth="Infinity"/>
+            </Tab>
+            <Tab fx:id="userPane" text="Users">
+                <ListView fx:id="userList" maxWidth="Infinity"/>
+            </Tab>
+        </TabPane>
+
+
         <Button  fx:id="disconnectButton" text="Disconnect" onAction="#goToLogin"/>
     </VBox>
 

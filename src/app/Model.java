@@ -17,7 +17,9 @@ public class Model {
 
     private Users users = new Users();
     private Inventory inventory = new Inventory();
+    private User currentUser;
     private DatabaseConnection databaseConnection = new DatabaseConnection("src/database/ap4b_db.db",inventory,users);
+
 
     public Model() throws SQLException {
         // DATABASE CONNECTION AND INITIALIZATION
@@ -35,6 +37,14 @@ public class Model {
 
     public Users getUsers(){
         return users;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
     }
 
 }

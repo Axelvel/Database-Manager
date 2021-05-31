@@ -50,4 +50,14 @@ public class Users {
 
     }
 
+    public int getUserIndex(String username) {
+
+        for(int i = 0; i < this.users.size(); i++) {
+            if (this.users.get(i).getUsername().equals(username)) {
+                return users.indexOf(users.get(i));
+            }
+        }
+        return -1;
+    }
+
 }
