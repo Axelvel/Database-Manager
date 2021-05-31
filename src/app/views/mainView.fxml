@@ -23,7 +23,8 @@
             <!--<Button text="getIndex" onAction="#getIndex"/>-->
         </HBox>
 
-        <TabPane fx:id="managerPane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://www.w3.org/2001/XInclude" maxWidth="Infinity">
+        <TabPane fx:id="managerPane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://www.w3.org/2001/XInclude"
+                 tabClosingPolicy="UNAVAILABLE" maxWidth="Infinity">
             <Tab fx:id="inventoryPane" text="Inventory">
                 <ListView fx:id="inventoryList" maxWidth="Infinity"/>
             </Tab>
