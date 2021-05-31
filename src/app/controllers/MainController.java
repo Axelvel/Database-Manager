@@ -6,9 +6,7 @@ import classes.Asset;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -30,15 +28,34 @@ public class MainController extends Controller implements Initializable {
     private Label label;
 
     @FXML
-    private ListView dataList;
+    private ListView inventoryList;
+
+    @FXML
+    private ListView userList;
+
+    @FXML
+    private TabPane managerPane;
+
+    @FXML
+    private Tab inventoryPane;
+
+    @FXML
+    private Tab userPane;
 
     @FXML
     private Button disconnectButton;
 
     public void refreshDataList(){
-        dataList.getItems().clear();
+        inventoryList.getItems().clear();
+        userList.getItems().clear();
+
         this.dataModel.getInventory().getDatabase().forEach(asset -> {
-            dataList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
+            inventoryList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
+
+        });
+
+        this.dataModel.getUsers().getUsers().forEach(user -> {
+            userList.getItems().add(user.getName() + user.getLastName() + " / Admin: " + user.isAdmin());
 
         });
     }
@@ -92,14 +109,9 @@ public class MainController extends Controller implements Initializable {
         changeScene(window, "../views/addUserView.fxml", controller, 400, 400);
     }
 
-
-
-
-
     @FXML
     private int getIndex() {
-        int index = dataList.getSelectionModel().getSelectedIndex();
-        return index;
+        return inventoryList.getSelectionModel().getSelectedIndex();
     }
 
     @Override

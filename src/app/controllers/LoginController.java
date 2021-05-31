@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class LoginController extends Controller implements Initializable {
+public class LoginController extends Controller {
 
     public LoginController(Model dataModel) {
         super(dataModel);
@@ -56,13 +56,4 @@ public class LoginController extends Controller implements Initializable {
         }
     }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //TODO: request focus
-        usernameField.setPromptText("Username");
-        passwordField.setPromptText("Password");
-        usernameField.setFocusTraversable(false);
-        passwordField.setFocusTraversable(false);
-    }
 }
