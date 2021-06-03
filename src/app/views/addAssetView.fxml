@@ -8,10 +8,9 @@
 
     <VBox alignment="CENTER" prefHeight="506.0" prefWidth="331.0" spacing="20">
         <Label text="Add Asset" />
-      <HBox prefHeight="19.0" prefWidth="238.0">
-         <children>
-            <RadioButton fx:id="typeComputer" mnemonicParsing="false" selected="true" text="Computer" />
-         </children></HBox>
+        <HBox prefHeight="19.0" prefWidth="238.0">
+            <RadioButton fx:id="typeComputer" mnemonicParsing="false" selected="true" text="Computer"/>
+        </HBox>
 
         <Text>Status</Text>
         <HBox spacing="20">

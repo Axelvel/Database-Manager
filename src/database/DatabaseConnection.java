@@ -153,6 +153,7 @@ public class DatabaseConnection {
      */
     public void refreshDatabase() throws SQLException {
         inventory.clear();
+        users.getUsers().clear();
 
         refreshUsers();
         refreshComputers();
@@ -234,6 +235,7 @@ public class DatabaseConnection {
      * @throws SQLException : exception
      */
     public void refreshUsers() throws SQLException {
+
         ResultSet rs = query("SELECT * from users_table");
         while(rs.next()){
             String username = rs.getString("user_username");
