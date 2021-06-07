@@ -38,9 +38,9 @@ public class AddUserController extends Controller {
     @FXML
     public void addUser() throws Exception {
         int size = dataModel.getUsers().getUsers().size();
-        //int id = dataModel.users.getUsers().get(size - 1).getId() + 1;
 
         String username = usernameField.getText();
+        ///CHECK IF USERNAME ALREADY EXISTS
         String password = passwordField.getText();
 
         String name = nameField.getText();
