@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:id="root" alignment="CENTER" hgap="10" prefHeight="572.0" prefWidth="392.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="root" alignment="CENTER" hgap="10" prefHeight="572.0" prefWidth="392.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <VBox fx:id="assetAttributes" alignment="TOP_CENTER" prefHeight="263.0" prefWidth="354.0" spacing="20.0" GridPane.halignment="CENTER">
         <children>
             <Label prefHeight="43.0" prefWidth="343.0" text="ADD A NEW ASSET">
