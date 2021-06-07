@@ -53,5 +53,7 @@ public abstract class Asset {
     public void setBrand(String brand){};
     public void setMemory(int memory){};
     public void setRam(int ram) {};
+    public void setWireless(boolean w){};
+    public void setSwitches(String s){};
 
 }

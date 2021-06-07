@@ -27,4 +27,6 @@ public class Keyboard extends Asset{
     public String getBrand(){return this.brand;}
     public String getSwitches(){return this.switches;}
     public boolean getWireless(){return this.wireless;}
+    public void setSwitches(String s){ switches = s; }
+    public void setWireless(boolean w){ wireless = w;}
 }

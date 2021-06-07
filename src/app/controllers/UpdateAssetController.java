@@ -1,16 +1,21 @@
 package app.controllers;
 
+import app.Type;
 import classes.Controller;
 import app.Model;
 import classes.Asset;
+import database.DatabaseConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import javafx.fxml.Initializable;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class UpdateAssetController extends Controller implements Initializable {
@@ -58,6 +63,21 @@ public class UpdateAssetController extends Controller implements Initializable {
     private RadioButton osToggle3;
 
     @FXML
+    private RadioButton wireless;
+
+    @FXML
+    private RadioButton notWireless;
+
+    @FXML
+    private RadioButton switchesMechanical;
+
+    @FXML
+    private RadioButton switchesMembrane;
+
+    @FXML
+    private RadioButton switchesRubber;
+
+    @FXML
     private RadioButton typeComputer;
 
     @FXML
@@ -68,6 +88,21 @@ public class UpdateAssetController extends Controller implements Initializable {
 
     @FXML
     private TextField ramTextField;
+
+    @FXML
+    private VBox computerAttributes;
+
+    @FXML
+    private VBox keyboardAttributes;
+
+    @FXML
+    private ToggleGroup statusGroup;
+
+    @FXML
+    private ToggleGroup osGroup;
+
+    @FXML
+    private ToggleGroup switchesGroup;
 
 
     @FXML
@@ -80,55 +115,31 @@ public class UpdateAssetController extends Controller implements Initializable {
     @FXML
     public void updateAsset() throws Exception {
 
-        String code = asset.getCode();
-        String status = null;
+        RadioButton selectedRadioButton = (RadioButton) statusGroup.getSelectedToggle();
+        String status = selectedRadioButton.getText();
+        asset.setStatus(selectedRadioButton.getText());
+        asset.setAvailability(availabilityToggle1.isSelected());
 
-        if (statusToggle1.isSelected()) {
-            status = "Excellent";
-        } else if (statusToggle2.isSelected()){
-            status = "Good";
-        } else if (statusToggle3.isSelected()) {
-            status = "Okay";
-        } else if (statusToggle4.isSelected()){
-            status = "Bad";
-        }
-        boolean available = availabilityToggle1.isSelected();
+        if(asset.getType() == Type.COMPUTER) {
+            asset.setBrand(brandTextField.getText());
 
-        //Computer
-        String brand = brandTextField.getText();
+            selectedRadioButton = (RadioButton) osGroup.getSelectedToggle();
+            String os = selectedRadioButton.getText();
+            asset.setOs(selectedRadioButton.getText());
 
-        int memory = 0;
-        if (memoryTextField.getText() != null) {
-             memory = Integer.parseInt(memoryTextField.getText());
-        }
-        int ram = 0;
-        if (ramTextField.getText() != null) {
-            ram = Integer.parseInt(ramTextField.getText());
+            if (memoryTextField.getText() != null) asset.setMemory(Integer.parseInt(memoryTextField.getText()));
+            if (ramTextField.getText() != null) asset.setRam(Integer.parseInt(ramTextField.getText()));
+
+        }else if(asset.getType() == Type.KEYBOARD){
+
+            selectedRadioButton = (RadioButton) switchesGroup.getSelectedToggle();
+            asset.setSwitches(selectedRadioButton.getText());
+            asset.setWireless(wireless.isSelected());
+
         }
 
-        String os = null;
-        if(osToggle1.isSelected()){
-            os = "Windows";
-        }else if(osToggle2.isSelected()){
-            os = "Linux";
-        }else if(osToggle3.isSelected()){
-            os = "MacOS";
-        }
-
-        if (code != null) { //TODO: Type check
-
-            asset.setAvailability(available);
-            asset.setStatus(status);
-
-
-            //Computer
-            asset.setBrand(brand);
-            asset.setOs(os);
-            asset.setMemory(memory);
-            asset.setRam(ram);
-
-            goBack();
-        }
+        DatabaseConnection.getInstance().updateAsset(asset);
+        goBack();
 
     }
 
@@ -136,37 +147,53 @@ public class UpdateAssetController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if (asset.isAvailable()) {
-            availabilityToggle1.setSelected(true);
-        } else {
-            availabilityToggle2.setSelected(true);
-        }
+        if (asset.isAvailable()) availabilityToggle1.setSelected(true);
 
-        String status = asset.getStatus();
-
-        switch (status) {
+        switch (asset.getStatus()) {
             case "Excellent" -> statusToggle1.setSelected(true);
             case "Good" -> statusToggle2.setSelected(true);
             case "Okay" -> statusToggle3.setSelected(true);
             case "Bad" -> statusToggle4.setSelected(true);
         }
 
-        String os = asset.getOs();
-
-        switch (os) {
-            case "Window" -> osToggle1.setSelected(true);
-            case "Linux" -> osToggle2.setSelected(true);
-            case "MacOS" -> osToggle3.setSelected(true);
-        }
-
         brandTextField.setText(asset.getBrand());
 
+        if(asset.getType() == Type.COMPUTER){
+            switchComputersAttribute();
 
-        String ram = String.valueOf(asset.getRam());
-        String memory = String.valueOf(asset.getMemory());
+            switch (asset.getOs()) {
+                case "Window" -> osToggle1.setSelected(true);
+                case "Linux" -> osToggle2.setSelected(true);
+                case "MacOS" -> osToggle3.setSelected(true);
+            }
+            String ram = String.valueOf(asset.getRam());
+            String memory = String.valueOf(asset.getMemory());
 
-        memoryTextField.setText(memory);
-        ramTextField.setText(ram);
+            memoryTextField.setText(memory);
+            ramTextField.setText(ram);
 
+        }else if(asset.getType() == Type.KEYBOARD){
+            switchKeyboardsAttribute();
+
+            if(asset.getWireless()) wireless.setSelected(true);
+
+            switch (asset.getSwitches()) {
+                case "Mechanical" -> switchesMechanical.setSelected(true);
+                case "Membrane" -> switchesMembrane.setSelected(true);
+                case "Rubber domes" -> switchesRubber.setSelected(true);
+            }
+        }
+
+
+    }
+
+    public void switchComputersAttribute(){
+        computerAttributes.setVisible(true);
+        computerAttributes.toFront();
+    }
+
+    public void switchKeyboardsAttribute(){
+        keyboardAttributes.setVisible(true);
+        keyboardAttributes.toFront();
     }
 }

@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.Type;
 import classes.Controller;
 import app.Model;
 import classes.Asset;
@@ -130,7 +131,9 @@ public class MainController extends Controller implements Initializable {
             Asset asset = DatabaseConnection.getInstance().getInventory().getDatabase().get(index);
             Stage window = (Stage) root.getScene().getWindow();
             Controller controller = new UpdateAssetController(dataModel, this, asset);
+            //SELON LE TYPE D'ASSET? CHAMPS DIFFERENTS
             changeScene(window, "../views/updateAssetView.fxml", controller, 400, 600);
+
         }
     }
 

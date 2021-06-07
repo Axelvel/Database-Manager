@@ -88,6 +88,39 @@ public class DatabaseConnection {
         return result;
     }
 
+    public void updateAsset(Asset asset) throws SQLException {
+        try {
+            String sqlAsset = "UPDATE assets_table set asset_status = ?, asset_availability = ? WHERE asset_code = '" + asset.getCode() + "';";
+            PreparedStatement pstmtAsset = connection.prepareStatement(sqlAsset);
+            pstmtAsset.setString(1, asset.getStatus());
+            pstmtAsset.setBoolean(2, asset.isAvailable());
+            pstmtAsset.executeUpdate();
+
+            if (asset.getType() == Type.COMPUTER) updateComputer(asset);
+            if (asset.getType() == Type.KEYBOARD) updateKeyboard(asset);
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void updateComputer(Asset c) throws SQLException {
+        String sqlComputer = "UPDATE computers_table set computer_brand = ?, computer_os = ?, computer_ram = ?, computer_memory = ? WHERE computer_code = '"+c.getCode()+"';";
+        PreparedStatement pstmtAsset = connection.prepareStatement(sqlComputer);
+        pstmtAsset.setString(1,c.getBrand());
+        pstmtAsset.setString(2,c.getOs());
+        pstmtAsset.setInt(3,c.getRam());
+        pstmtAsset.setInt(4,c.getMemory());
+        pstmtAsset.executeUpdate();
+    }
+
+    public void updateKeyboard(Asset k) throws SQLException {
+        String sqlComputer = "UPDATE keyboards_table set keyboard_brand = ?, keyboard_wireless = ?, keyboard_switches = ? WHERE keyboard_code = '"+k.getCode()+"';";
+        PreparedStatement pstmtAsset = connection.prepareStatement(sqlComputer);
+        pstmtAsset.setString(1,k.getBrand());
+        pstmtAsset.setBoolean(2,k.getWireless());
+        pstmtAsset.setString(3,k.getSwitches());
+        pstmtAsset.executeUpdate();
+    }
     /**
      * Method used in order to add a new asset to the sql database
      */
