@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<GridPane fx:id="root" alignment="center" hgap="10" style="-fx-background-color: blue;" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<GridPane fx:id="root" alignment="center" hgap="10" style="-fx-color: linear-gradient(to right, red, blue);;" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
 
     <VBox alignment="CENTER" prefWidth="500.0" spacing="20">
-        <Label fx:id="label" />
+        <Label fx:id="label" textFill="BLACK">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
         <HBox spacing="20">
             <Button onAction="#refreshDataList" text="Refresh" />
-            <Button fx:id="addAssetButton" onAction="#goToAdd" text="Add" />
-            <Button fx:id="deleteButton" onAction="#deleteAsset" text="Delete" />
-            <Button fx:id="updateButton" onAction="#updateAsset" text="Update Asset" />
-            <Button fx:id="addUserButton" onAction="#goToAddUser" text="Add User" />
-            <!--<Button text="getIndex" onAction="#getIndex"/>-->
+            <Button onAction="#goToAdd" text="Add" />
+            <Button onAction="#deleteAction" text="Delete" />
+            <Button onAction="#updateAsset" text="Update Asset" />
+            <Button onAction="#goToAddUser" text="Add User" />
         </HBox>
 
         <TabPane fx:id="managerPane" maxWidth="Infinity" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://www.w3.org/2001/XInclude">

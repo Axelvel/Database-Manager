@@ -26,7 +26,8 @@ public class Main extends Application {
         primaryStage.setTitle("IT Asset Manager");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.initStyle(StageStyle.DECORATED);
-        primaryStage.sizeToScene();
+        //primaryStage.sizeToScene();
+
 
         primaryStage.show();
 

@@ -3,6 +3,7 @@ package app.controllers;
 import classes.Controller;
 import app.Model;
 import classes.Asset;
+import classes.User;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,9 +46,11 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private Button disconnectButton;
 
-    public void refreshDataList(){
+    public void refreshDataList() {
+
         inventoryList.getItems().clear();
         userList.getItems().clear();
+
 
         this.dataModel.getInventory().getDatabase().forEach(asset -> {
             inventoryList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
@@ -82,18 +85,48 @@ public class MainController extends Controller implements Initializable {
     }
 
     @FXML
+    private void deleteAction() throws SQLException{
+        int tabIndex = managerPane.getSelectionModel().getSelectedIndex();
+        // 0 si "Inventory", 1 si c'est tab "Users"
+
+        if (tabIndex == 0) {
+            deleteAsset();
+        }
+        else {
+            deleteUser();
+        }
+    }
+
     private void deleteAsset() throws SQLException {
-        int index = getIndex();
+        int index = getInventoryIndex();
         if (index != -1) {
             this.dataModel.getDb().deleteAsset(this.dataModel.getInventory().getDatabase().get(index));
-            dataModel.getDb().refreshDatabase();
-            refreshDataList();
         }
+        dataModel.getDb().refreshDatabase();
+        refreshDataList();
+    }
+
+
+    private void deleteUser() throws SQLException {
+        int index = getUserIndex();
+
+        String username = this.dataModel.getUsers().getUsers().get(index).getUsername();
+
+        int userIndex = this.dataModel.getUsers().getUserIndex(username);
+        User deletedUser = this.dataModel.getUsers().getUsers().get(userIndex);
+
+        if (index != -1) {
+            this.dataModel.getUsers().deleteUser(username);
+            this.dataModel.getDb().deleteUser(deletedUser);
+        }
+
+        dataModel.getDb().refreshDatabase();
+        refreshDataList();
     }
 
     @FXML
     private void updateAsset() throws Exception {
-        int index = getIndex();
+        int index = getInventoryIndex();
         if (index != -1) {
             Asset asset = dataModel.getInventory().getDatabase().get(index);
             Stage window = (Stage) root.getScene().getWindow();
@@ -109,15 +142,23 @@ public class MainController extends Controller implements Initializable {
         changeScene(window, "../views/addUserView.fxml", controller, 400, 400);
     }
 
-    @FXML
-    private int getIndex() {
+    private int getInventoryIndex() {
         return inventoryList.getSelectionModel().getSelectedIndex();
+    }
+
+    private int getUserIndex() {
+        return userList.getSelectionModel().getSelectedIndex();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Task<Void> task = new Task<>() {
+        refreshDataList();
+        refreshLabel();
+
+        //TODO: Faire tourner le thread en continu
+
+        /*Task<Void> task = new Task<>() {
             @Override public Void call() throws SQLException {
                 refreshDataList();
                 refreshLabel();
@@ -127,5 +168,6 @@ public class MainController extends Controller implements Initializable {
 
         new Thread(task).start();
 
+        */
     }
 }

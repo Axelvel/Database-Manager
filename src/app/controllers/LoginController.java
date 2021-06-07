@@ -5,11 +5,14 @@ import app.Model;
 import classes.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -34,6 +37,7 @@ public class LoginController extends Controller {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new MainController(this.dataModel);
         changeScene(window, "../views/mainView.fxml", controller, 600, 700);
+        window.setMaximized(true);
     }
 
     @FXML
@@ -55,5 +59,4 @@ public class LoginController extends Controller {
             System.out.println("Refused");
         }
     }
-
 }
