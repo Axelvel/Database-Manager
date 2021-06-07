@@ -99,8 +99,12 @@
                     </Label>
                     <Group>
                         <children>
-                            <RadioButton fx:id="wireless" mnemonicParsing="false" text="Yes" />
-                            <RadioButton fx:id="notWireless" layoutX="66.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="71.0" text="No" />
+                            <RadioButton fx:id="wireless" mnemonicParsing="false" text="Yes">
+                                <toggleGroup>
+                                    <ToggleGroup fx:id="wirelessGroup" />
+                                </toggleGroup>
+                            </RadioButton>
+                            <RadioButton fx:id="notWireless" layoutX="66.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="71.0" text="No" toggleGroup="$wirelessGroup"/>
                         </children>
                     </Group>
                     <Label text="Switches">
@@ -110,9 +114,13 @@
                     </Label>
                     <Group>
                         <children>
-                            <RadioButton fx:id="switchesMechanical" mnemonicParsing="false" text="Mechanical" />
-                            <RadioButton fx:id="switchesMembrane" layoutX="104.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="236.0" text="Membrane" />
-                            <RadioButton fx:id="switchesRubber" layoutX="199.0" mnemonicParsing="false" text="Rubber domes" />
+                            <RadioButton fx:id="switchesMechanical" mnemonicParsing="false" text="Mechanical" >
+                                <toggleGroup>
+                                    <ToggleGroup fx:id="switchesGroup" />
+                                </toggleGroup>
+                            </RadioButton>
+                            <RadioButton fx:id="switchesMembrane" layoutX="104.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="236.0" text="Membrane" toggleGroup="$switchesGroup"/>
+                            <RadioButton fx:id="switchesRubber" layoutX="199.0" mnemonicParsing="false" text="Rubber domes" toggleGroup="$switchesGroup"/>
                         </children>
                     </Group>
                 </children>

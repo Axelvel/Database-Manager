@@ -15,10 +15,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         Model dataModel = new Model();
-        Controller controller = new LoginController(dataModel);
+        Controller logController = new LoginController(dataModel);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("views/loginView.fxml"));
-        loader.setController(controller);
+        loader.setController(logController);
         Parent root = loader.load();
 
         root.setStyle("-fx-font-family: \"Verdana\"");

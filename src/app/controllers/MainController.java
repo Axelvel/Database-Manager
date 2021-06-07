@@ -79,7 +79,7 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private void goToAdd() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
-        Controller controller = new AddAssetController(dataModel);
+        Controller controller = new AddAssetController(dataModel,this);
         changeScene(window, "../views/addAssetView.fxml", controller, 400, 600);
     }
 
@@ -129,7 +129,7 @@ public class MainController extends Controller implements Initializable {
         if (index != -1) {
             Asset asset = DatabaseConnection.getInstance().getInventory().getDatabase().get(index);
             Stage window = (Stage) root.getScene().getWindow();
-            Controller controller = new UpdateAssetController(dataModel, asset);
+            Controller controller = new UpdateAssetController(dataModel, this, asset);
             changeScene(window, "../views/updateAssetView.fxml", controller, 400, 600);
         }
     }
@@ -137,7 +137,7 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private void goToAddUser() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
-        Controller controller = new AddUserController(dataModel);
+        Controller controller = new AddUserController(dataModel,this);
         changeScene(window, "../views/addUserView.fxml", controller, 400, 400);
     }
 

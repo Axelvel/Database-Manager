@@ -16,9 +16,11 @@ import java.util.ResourceBundle;
 public class UpdateAssetController extends Controller implements Initializable {
 
     private Asset asset;
+    private MainController mainCtrl;
 
-    public UpdateAssetController(Model dataModel, Asset asset) {
+    public UpdateAssetController(Model dataModel, MainController mainCtrl, Asset asset) {
         super(dataModel);
+        this.mainCtrl = mainCtrl;
         this.asset = asset;
     }
 

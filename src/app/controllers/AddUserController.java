@@ -10,12 +10,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.sql.ResultSet;
+
 public class AddUserController extends Controller {
 
-    public AddUserController(Model dataModel) {
-        super(dataModel);
-    }
+    private MainController mainCtrl;
 
+    public AddUserController(Model dataModel, MainController mainCtrl) {
+        super(dataModel);
+        this.mainCtrl = mainCtrl;
+    }
     @FXML
     private GridPane root;
 
@@ -38,26 +42,30 @@ public class AddUserController extends Controller {
 
     @FXML
     public void addUser() throws Exception {
-        int size = DatabaseConnection.getInstance().getUsers().getUsers().size();
 
         String username = usernameField.getText();
-        ///CHECK IF USERNAME ALREADY EXISTS
-        String password = passwordField.getText();
+        ResultSet checkUserExists = DatabaseConnection.getInstance().query(
+                "SELECT * FROM users_table WHERE user_username = '"+username+"'");
+        if(checkUserExists.next()){
+            System.out.println("username existant");
+        }else{
+            String password = passwordField.getText();
 
-        String name = nameField.getText();
-        String lastname = lastnameField.getText();
+            String name = nameField.getText();
+            String lastname = lastnameField.getText();
 
-        boolean status = statusToggle2.isSelected();
+            boolean status = statusToggle2.isSelected();
 
-        User user = new User(username, password,  name, lastname, status);
-        DatabaseConnection.getInstance().addUser(user);
-        goBack();
+            User user = new User(username, password,  name, lastname, status);
+            DatabaseConnection.getInstance().addUser(user);
+            goBack();
+        }
     }
 
     @FXML
     public void goBack() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
-        Controller controller = new MainController(this.dataModel);
-        changeScene(window, "../views/mainView.fxml", controller, 600, 700);
+        mainCtrl.refreshDataList();
+        changeScene(window, "../views/mainView.fxml", mainCtrl, 600, 700);
     }
 }

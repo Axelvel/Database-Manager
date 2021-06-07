@@ -235,7 +235,7 @@ public class DatabaseConnection {
      * @throws SQLException : exception
      */
     public void addUser(User u) throws SQLException {
-        String sql = "INSERT INTO users_table(user_username,user_password,user_name,user_last_name,user_status) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO users_table(user_username,user_password,user_name,user_last_name,user_status) VALUES (?,?,?,?,?) ON CONFLICT (user_username) DO NOTHING;";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         pstmt.setString(1, u.getUsername());
         pstmt.setString(2,u.getPassword());
