@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.views.PopUp;
 import classes.Controller;
 import app.Model;
 import classes.User;
@@ -47,7 +48,7 @@ public class AddUserController extends Controller {
         ResultSet checkUserExists = DatabaseConnection.getInstance().query(
                 "SELECT * FROM users_table WHERE user_username = '"+username+"'");
         if(checkUserExists.next()){
-            System.out.println("username existant");
+            PopUp.display("Username already taken");
         }else{
             String password = passwordField.getText();
 
