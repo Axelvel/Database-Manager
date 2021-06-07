@@ -15,28 +15,12 @@ import java.sql.SQLException;
  */
 public class Model {
 
-    private Users users = new Users();
-    private Inventory inventory = new Inventory();
     private User currentUser;
-    private DatabaseConnection databaseConnection = new DatabaseConnection("src/database/ap4b_db.db",inventory,users);
-
 
     public Model() throws SQLException {
         // DATABASE CONNECTION AND INITIALIZATION
-        databaseConnection.connect();
-        databaseConnection.refreshDatabase();
-    }
-
-    public DatabaseConnection getDb(){
-        return this.databaseConnection;
-    }
-
-    public Inventory getInventory(){
-        return inventory;
-    }
-
-    public Users getUsers(){
-        return users;
+        DatabaseConnection.getInstance().connect();
+        DatabaseConnection.getInstance().refreshDatabase();
     }
 
     public User getCurrentUser() {

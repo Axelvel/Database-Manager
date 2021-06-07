@@ -5,6 +5,7 @@ import app.Model;
 import app.Type;
 import classes.Computer;
 import classes.Keyboard;
+import database.DatabaseConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -108,7 +109,7 @@ public class AddAssetController extends Controller {
         if(typeComputer.isSelected()){
 
             //count the number of computers in the database
-            int nbComputers = dataModel.getDb().count("computers_table") + 1;
+            int nbComputers = DatabaseConnection.getInstance().count("computers_table") + 1;
             String code = "COMP" + nbComputers;
 
             String os = null;
@@ -123,11 +124,11 @@ public class AddAssetController extends Controller {
             Computer c = new Computer(code, Type.COMPUTER,status,true,brandTextField.getText(),os,
                     Integer.parseInt(memoryTextField.getText()),Integer.parseInt(ramTextField.getText()));
 
-            dataModel.getDb().addAsset(c);
-            dataModel.getDb().refreshDatabase();
+            DatabaseConnection.getInstance().addAsset(c);
+            DatabaseConnection.getInstance().refreshDatabase();
             goBack();
         } else if(typeKeyboard.isSelected()){
-            int nbComputers = dataModel.getDb().count("keyboards_table") + 1;
+            int nbComputers = DatabaseConnection.getInstance().count("keyboards_table") + 1;
             String code = "KEYB" + nbComputers;
 
             String switches = null;
@@ -145,8 +146,8 @@ public class AddAssetController extends Controller {
             }
 
             Keyboard k = new Keyboard(code,Type.KEYBOARD,status,true,brandTextField.getText(),isWireless,switches);
-            dataModel.getDb().addAsset(k);
-            dataModel.getDb().refreshDatabase();
+
+            DatabaseConnection.getInstance().addAsset(k);
             goBack();
         }
     }

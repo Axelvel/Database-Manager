@@ -17,16 +17,30 @@ public class DatabaseConnection {
     private Inventory inventory;
     private Users users;
 
-    /**
-     * Constructor
-     * @param dbPath : file path to the database
-     */
-    public DatabaseConnection(String dbPath, Inventory invt, Users users){
+    private static DatabaseConnection db = null;
+    private DatabaseConnection db1;
+
+    private DatabaseConnection(String dbPath){
         this.dbPath = dbPath;
-        this.inventory = invt;
-        this.users = users;
+        this.inventory = new Inventory();
+        this.users = new Users();
     }
 
+    public static DatabaseConnection getInstance(){
+        if(db == null) {
+            db = new DatabaseConnection("src/database/ap4b_db.db");
+            return db;
+        }
+        return db;
+    }
+
+    public Inventory getInventory(){
+        return inventory;
+    }
+
+    public Users getUsers(){
+        return users;
+    }
     /**
      * Create a connection with the database
      */
@@ -51,6 +65,8 @@ public class DatabaseConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        db = null;
     }
 
     /**
@@ -76,19 +92,24 @@ public class DatabaseConnection {
      * Method used in order to add a new asset to the sql database
      */
     public void addAsset(Asset asset) throws SQLException {
-        String sql = "INSERT INTO assets_table(asset_code,asset_type,asset_status,asset_availability) VALUES(?,?,?,?)";
-        PreparedStatement pstmt = connection.prepareStatement(sql);
-        pstmt.setString(1, asset.getCode());
-        pstmt.setString(2, asset.getType().toString());
-        pstmt.setString(3, asset.getStatus());
-        pstmt.setInt(4, 1);
-        pstmt.executeUpdate();
+        try {
+            String sql = "INSERT INTO assets_table(asset_code,asset_type,asset_status,asset_availability) VALUES(?,?,?,?)";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, asset.getCode());
+            pstmt.setString(2, asset.getType().toString());
+            pstmt.setString(3, asset.getStatus());
+            pstmt.setInt(4, 1);
+            pstmt.executeUpdate();
 
+            if (asset.getType() == Type.COMPUTER) {
+                addComputer(asset);
+            } else if (asset.getType() == Type.KEYBOARD) {
+                addKeyboard(asset);
+            }
 
-        if (asset.getType() == Type.COMPUTER){
-            addComputer(asset);
-        } else if(asset.getType() == Type.KEYBOARD){
-            addKeyboard(asset);
+            inventory.addAsset(asset);
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -132,6 +153,8 @@ public class DatabaseConnection {
         } else if (asset.getType() == Type.KEYBOARD){
             deleteAssetType("keyboards_table","keyboard_code",asset.getCode());
         }
+
+        inventory.removeAsset(asset.getCode());
     }
 
     /**
@@ -220,6 +243,8 @@ public class DatabaseConnection {
         pstmt.setString(4, u.getLastName());
         pstmt.setBoolean(5,u.isAdmin());
         pstmt.executeUpdate();
+
+        users.addUser(u);
     }
 
     /**
@@ -229,6 +254,7 @@ public class DatabaseConnection {
     public void deleteUser(User u) throws SQLException {
         String sql = "DELETE FROM users_table WHERE user_username = '" + u.getUsername() +"'";
         statement.executeUpdate(sql);
+        users.deleteUser(u.getUsername());
     }
 
     /**

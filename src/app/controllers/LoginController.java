@@ -3,6 +3,7 @@ package app.controllers;
 import classes.Controller;
 import app.Model;
 import classes.User;
+import database.DatabaseConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
@@ -44,15 +45,13 @@ public class LoginController extends Controller {
     public void login() throws Exception {
 
         String username = usernameField.getText();
-        //String username_2 = this.dataModel.users.getUserUsername(username);
         String password = passwordField.getText();
 
 
-        if (dataModel.getUsers().passwordMatch(username, password)) {
+        if (DatabaseConnection.getInstance().getUsers().passwordMatch(username, password)) {
             System.out.println("Login!");
-            //dataModel.getCurrentUser() = dataModel.getUsers().getUsers().get(0);
-            int userIndex = dataModel.getUsers().getUserIndex(username);
-            User user = dataModel.getUsers().getUsers().get(userIndex);
+            int userIndex = DatabaseConnection.getInstance().getUsers().getUserIndex(username);
+            User user = DatabaseConnection.getInstance().getUsers().getUsers().get(userIndex);
             dataModel.setCurrentUser(user);
             gotoProfile();
         } else {

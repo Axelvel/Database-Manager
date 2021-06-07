@@ -4,6 +4,7 @@ import classes.Controller;
 import app.Model;
 import classes.Asset;
 import classes.User;
+import database.DatabaseConnection;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -51,15 +52,13 @@ public class MainController extends Controller implements Initializable {
         inventoryList.getItems().clear();
         userList.getItems().clear();
 
-
-        this.dataModel.getInventory().getDatabase().forEach(asset -> {
+        DatabaseConnection.getInstance().getInventory().getDatabase().forEach(asset -> {
             inventoryList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
 
         });
 
-        this.dataModel.getUsers().getUsers().forEach(user -> {
+        DatabaseConnection.getInstance().getUsers().getUsers().forEach(user -> {
             userList.getItems().add(user.getName() + user.getLastName() + " / Admin: " + user.isAdmin());
-
         });
     }
 
@@ -100,9 +99,9 @@ public class MainController extends Controller implements Initializable {
     private void deleteAsset() throws SQLException {
         int index = getInventoryIndex();
         if (index != -1) {
-            this.dataModel.getDb().deleteAsset(this.dataModel.getInventory().getDatabase().get(index));
+            DatabaseConnection.getInstance().deleteAsset(DatabaseConnection.getInstance().getInventory().getDatabase().get(index));
         }
-        dataModel.getDb().refreshDatabase();
+        DatabaseConnection.getInstance().refreshDatabase();
         refreshDataList();
     }
 
@@ -110,17 +109,17 @@ public class MainController extends Controller implements Initializable {
     private void deleteUser() throws SQLException {
         int index = getUserIndex();
 
-        String username = this.dataModel.getUsers().getUsers().get(index).getUsername();
+        String username = DatabaseConnection.getInstance().getUsers().getUsers().get(index).getUsername();
 
-        int userIndex = this.dataModel.getUsers().getUserIndex(username);
-        User deletedUser = this.dataModel.getUsers().getUsers().get(userIndex);
+        int userIndex = DatabaseConnection.getInstance().getUsers().getUserIndex(username);
+        User deletedUser = DatabaseConnection.getInstance().getUsers().getUsers().get(userIndex);
 
         if (index != -1) {
-            this.dataModel.getUsers().deleteUser(username);
-            this.dataModel.getDb().deleteUser(deletedUser);
+            DatabaseConnection.getInstance().getUsers().deleteUser(username);
+            DatabaseConnection.getInstance().deleteUser(deletedUser);
         }
 
-        dataModel.getDb().refreshDatabase();
+        DatabaseConnection.getInstance().refreshDatabase();
         refreshDataList();
     }
 
@@ -128,7 +127,7 @@ public class MainController extends Controller implements Initializable {
     private void updateAsset() throws Exception {
         int index = getInventoryIndex();
         if (index != -1) {
-            Asset asset = dataModel.getInventory().getDatabase().get(index);
+            Asset asset = DatabaseConnection.getInstance().getInventory().getDatabase().get(index);
             Stage window = (Stage) root.getScene().getWindow();
             Controller controller = new UpdateAssetController(dataModel, asset);
             changeScene(window, "../views/updateAssetView.fxml", controller, 400, 600);

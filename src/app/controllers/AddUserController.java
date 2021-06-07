@@ -3,6 +3,7 @@ package app.controllers;
 import classes.Controller;
 import app.Model;
 import classes.User;
+import database.DatabaseConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -37,7 +38,7 @@ public class AddUserController extends Controller {
 
     @FXML
     public void addUser() throws Exception {
-        int size = dataModel.getUsers().getUsers().size();
+        int size = DatabaseConnection.getInstance().getUsers().getUsers().size();
 
         String username = usernameField.getText();
         ///CHECK IF USERNAME ALREADY EXISTS
@@ -49,8 +50,7 @@ public class AddUserController extends Controller {
         boolean status = statusToggle2.isSelected();
 
         User user = new User(username, password,  name, lastname, status);
-        dataModel.getUsers().addUser(user);
-        dataModel.getDb().addUser(user);
+        DatabaseConnection.getInstance().addUser(user);
         goBack();
     }
 
