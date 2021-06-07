@@ -17,7 +17,7 @@ public class PopUp {
     {
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);
-        popupwindow.setTitle("This is a pop up window");
+        popupwindow.setTitle("WARNING");
 
         Label label1= new Label(text);
 
