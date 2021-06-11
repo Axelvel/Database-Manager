@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="cellPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_LEFT" layoutY="-1.0" minHeight="-Infinity" prefHeight="28.0" prefWidth="601.0">
+         <children>
+            <ImageView fx:id="iconView" fitHeight="41.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" />
+            <Separator prefHeight="22.0" prefWidth="21.0" />
+            <Label fx:id="codeLabel" text="CODE" />
+            <Separator prefHeight="8.0" prefWidth="51.0" />
+            <Label fx:id="conditionLabel" text="CONDITION" />
+            <Separator layoutX="106.0" layoutY="28.0" prefHeight="8.0" prefWidth="51.0" />
+            <Label fx:id="availabilityLabel" text="AVAILABILITY" />
+            <Separator layoutX="222.0" layoutY="28.0" prefHeight="6.0" prefWidth="141.0" />
+            <Button fx:id="detailsButton" mnemonicParsing="false" prefHeight="1.0" prefWidth="118.0" text="More information" />
+         </children></HBox>
+   </children>
+</Pane>

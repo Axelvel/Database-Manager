@@ -1,18 +1,28 @@
 package app.controllers;
 
 import app.Type;
+import classes.AssetCell;
 import classes.Controller;
 import app.Model;
 import classes.Asset;
 import classes.User;
 import database.DatabaseConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,9 +39,8 @@ public class MainController extends Controller implements Initializable {
 
     @FXML
     private Label label;
-
     @FXML
-    private ListView inventoryList;
+    private ListView<Asset> inventoryList;
 
     @FXML
     private ListView userList;
@@ -48,15 +57,18 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private Button disconnectButton;
 
+    private ObservableList<Asset> assetObservableList;
+
     public void refreshDataList() {
 
         inventoryList.getItems().clear();
         userList.getItems().clear();
 
-        DatabaseConnection.getInstance().getInventory().getDatabase().forEach(asset -> {
-            inventoryList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
-
-        });
+        assetObservableList = FXCollections.observableArrayList();
+        //inventoryList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
+        assetObservableList.addAll(DatabaseConnection.getInstance().getInventory().getDatabase());
+        inventoryList.setItems(assetObservableList);
+        inventoryList.setCellFactory(assetListView -> new AssetCell());
 
         DatabaseConnection.getInstance().getUsers().getUsers().forEach(user -> {
             userList.getItems().add(user.getName() + user.getLastName() + " / Admin: " + user.isAdmin());
