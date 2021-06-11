@@ -12,10 +12,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import javafx.fxml.Initializable;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class UpdateAssetController extends Controller implements Initializable {
@@ -116,7 +114,6 @@ public class UpdateAssetController extends Controller implements Initializable {
     public void updateAsset() throws Exception {
 
         RadioButton selectedRadioButton = (RadioButton) statusGroup.getSelectedToggle();
-        String status = selectedRadioButton.getText();
         asset.setStatus(selectedRadioButton.getText());
         asset.setAvailability(availabilityToggle1.isSelected());
 
@@ -131,16 +128,13 @@ public class UpdateAssetController extends Controller implements Initializable {
             if (ramTextField.getText() != null) asset.setRam(Integer.parseInt(ramTextField.getText()));
 
         }else if(asset.getType() == Type.KEYBOARD){
-
             selectedRadioButton = (RadioButton) switchesGroup.getSelectedToggle();
             asset.setSwitches(selectedRadioButton.getText());
             asset.setWireless(wireless.isSelected());
-
         }
 
         DatabaseConnection.getInstance().updateAsset(asset);
         goBack();
-
     }
 
 

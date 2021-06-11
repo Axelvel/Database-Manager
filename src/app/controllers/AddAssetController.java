@@ -1,6 +1,5 @@
 package app.controllers;
 
-import app.Main;
 import classes.Controller;
 import app.Model;
 import app.Type;
@@ -8,8 +7,6 @@ import classes.Computer;
 import classes.Keyboard;
 import database.DatabaseConnection;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -18,8 +15,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.sql.ResultSet;
-import java.util.Enumeration;
 
 public class AddAssetController extends Controller {
 
@@ -105,7 +100,6 @@ public class AddAssetController extends Controller {
     @FXML
     public void goBack() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
-        //Controller controller = new MainController(this.dataModel);
         mainCtrl.refreshDataList();
         changeScene(window, "../views/mainView.fxml", mainCtrl, 600, 700);
     }
@@ -128,7 +122,6 @@ public class AddAssetController extends Controller {
                     Integer.parseInt(memoryTextField.getText()),Integer.parseInt(ramTextField.getText()));
 
             DatabaseConnection.getInstance().addAsset(c);
-            //DatabaseConnection.getInstance().refreshDatabase();
             goBack();
 
         } else if(typeKeyboard.isSelected()){
@@ -139,9 +132,7 @@ public class AddAssetController extends Controller {
             String switches = selectedRadioButton.getText();
 
             boolean isWireless = false;
-            if(wireless.isSelected()){
-                isWireless = true;
-            }
+            if(wireless.isSelected())isWireless = true;
 
             Keyboard k = new Keyboard(code,Type.KEYBOARD,status,true,brandTextField.getText(),isWireless,switches);
 

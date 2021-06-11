@@ -1,11 +1,7 @@
 package app.controllers;
 
-import app.views.PopUp;
-import classes.AssetCell;
-import classes.Controller;
+import classes.*;
 import app.Model;
-import classes.Asset;
-import classes.User;
 import database.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,8 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.sql.SQLException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,7 +31,7 @@ public class MainController extends Controller implements Initializable {
     private ListView<Asset> inventoryList;
 
     @FXML
-    private ListView userList;
+    private ListView<User> userList;
 
     @FXML
     private TabPane managerPane;
@@ -52,6 +46,7 @@ public class MainController extends Controller implements Initializable {
     private Button disconnectButton;
 
     private ObservableList<Asset> assetObservableList;
+    private ObservableList<User> userObservableList;
 
     public void refreshDataList() {
 
@@ -59,14 +54,17 @@ public class MainController extends Controller implements Initializable {
         userList.getItems().clear();
 
         assetObservableList = FXCollections.observableArrayList();
-        //inventoryList.getItems().add(asset.getCode() + " (Availability: " + asset.isAvailable() + " / Status: " + asset.getStatus() + " )");
         assetObservableList.addAll(DatabaseConnection.getInstance().getInventory().getDatabase());
         inventoryList.setItems(assetObservableList);
         inventoryList.setCellFactory(assetListView -> new AssetCell());
 
-        DatabaseConnection.getInstance().getUsers().getUsers().forEach(user -> {
+        userObservableList = FXCollections.observableArrayList();
+        userObservableList.addAll(DatabaseConnection.getInstance().getUsers().getUsers());
+        userList.setItems(userObservableList);
+        userList.setCellFactory(assetListView -> new UserCell());
+        /*DatabaseConnection.getInstance().getUsers().getUsers().forEach(user -> {
             userList.getItems().add(user.getName() + user.getLastName() + " / Admin: " + user.isAdmin());
-        });
+        });*/
     }
 
     public void refreshLabel() {
@@ -160,7 +158,6 @@ public class MainController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         refreshDataList();
         refreshLabel();
     }

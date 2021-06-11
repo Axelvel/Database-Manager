@@ -28,10 +28,7 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.DECORATED);
         //primaryStage.sizeToScene();
 
-
         primaryStage.show();
-
-
         }
 
     public static void main(String[] args){

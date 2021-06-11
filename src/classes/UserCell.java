@@ -10,44 +10,35 @@ import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
-public class AssetCell extends ListCell<Asset> {
+public class UserCell extends ListCell<User> {
 
+    private User user;
     @FXML
     private Pane cellPane;
     @FXML
     private ImageView iconView;
     @FXML
-    private Label codeLabel;
+    private Label usernameLabel;
     @FXML
-    private Label conditionLabel;
-    @FXML
-    private Label availabilityLabel;
-    @FXML
-    private Button detailsButton;
-
-    private Image icon;
-
-    private Asset asset;
+    private Button userDetailsButton;
 
     @Override
-    public void updateItem(Asset asset, boolean empty) {
+    public void updateItem(User user, boolean empty) {
 
-        super.updateItem(asset, empty);
-        this.asset = asset;
-        if (empty || asset == null) {
+        super.updateItem(user, empty);
+        this.user = user;
+        if (empty || user == null) {
             setText(null);
             setGraphic(null);
         } else {
             FXMLLoader mLLoader = null;
             if (mLLoader == null) {
-                URL fxmlLocation = getClass().getResource("/app/views/AssetListCellView.fxml");
+                URL fxmlLocation = getClass().getResource("/app/views/UserListCellView.fxml");
 
                 mLLoader = new FXMLLoader(fxmlLocation);
                 mLLoader.setController(this);
@@ -58,43 +49,38 @@ public class AssetCell extends ListCell<Asset> {
                 }
             }
 
-            codeLabel.setText(asset.getCode());
-            conditionLabel.setText(asset.getStatus());
-
-            if(asset.isAvailable()) {
-                availabilityLabel.setText("Available");
-                availabilityLabel.setTextFill(Color.GREEN);
-            }else{
-                availabilityLabel.setText("Not available");
-                availabilityLabel.setTextFill(Color.RED);
-            }
+            usernameLabel.setText(user.getUsername());
+            Image icon;
             FileInputStream inputstream = null;
-            if(asset.getType() == Type.COMPUTER){
+            if(user.isAdmin()){
                 try {
-                    inputstream = new FileInputStream("src/resources/computerIcon.png");
+                    inputstream = new FileInputStream("src/resources/adminIcon.png");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
                 icon = new Image(inputstream);
-            }else if(asset.getType() == Type.KEYBOARD){
+            }else{
                 try {
-                    inputstream = new FileInputStream("src/resources/keyboardIcon.png");
+                    inputstream = new FileInputStream("src/resources/userIcon.png");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
                 icon = new Image(inputstream);
             }
+
             iconView.setImage(icon);
             iconView.setFitWidth(40);
             iconView.setFitHeight(40);
-
+            
             setText(null);
             setGraphic(cellPane);
-            }
+        }
     }
 
     @FXML
-    public void showAssetDetails() throws IOException {
-        PopUp.displayAssetDetails(asset);
+    public void showUserDetails() throws IOException {
+        PopUp.displayUserDetails(user);
+        //PopUp.displayAssetDetails(asset);
     }
+
 }

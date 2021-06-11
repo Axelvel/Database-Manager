@@ -2,22 +2,20 @@ package app.views;
 
 import app.Type;
 import classes.Asset;
+import classes.User;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import javax.imageio.ImageIO;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -35,6 +33,7 @@ public class PopUp {
         popupwindow.getIcons().add(popupIcon);
         return popupwindow;
     }
+
     public static void displayMessage(String infoType, String text) throws IOException {
         Stage popupwindow = initialize();
         popupwindow.setTitle(infoType);
@@ -131,6 +130,49 @@ public class PopUp {
         popupwindow.showAndWait();
 
 
+    }
+
+    public static void displayUserDetails(User user) throws IOException{
+        Stage popupwindow = initialize();
+        popupwindow.setTitle("USER DETAILS");
+        Label title = new Label("USER DETAILS");
+        title.setFont(new Font("Arial", 40));
+
+        TextFlow content = new TextFlow();
+
+        if(user.isAdmin()){
+            Label admin=new Label("ADMIN");
+            admin.setFont(new Font("Arial", 20));
+            admin.setTextFill(Color.RED);
+            content.getChildren().add(admin);
+        }
+
+        Text usernameTitle=new Text("\nUsername : ");
+        usernameTitle.setStyle("-fx-font-weight: bold");
+        Text username=new Text(user.getUsername()+"\n");
+        username.setStyle("-fx-font-weight: regular");
+
+        Text nameTitle=new Text("Last name  : ");
+        nameTitle.setStyle("-fx-font-weight: bold");
+        Text name=new Text(user.getLastName()+"\n");
+        name.setStyle("-fx-font-weight: regular");
+
+        Text surnameTitle=new Text("Surname  : ");
+        surnameTitle.setStyle("-fx-font-weight: bold");
+        Text surname=new Text(user.getName()+"\n");
+        surname.setStyle("-fx-font-weight: regular");
+
+        content.getChildren().addAll(usernameTitle,username,nameTitle,name,surnameTitle,surname);
+        content.setTextAlignment(TextAlignment.CENTER);
+        Button closeButton= new Button("Close");
+        closeButton.setOnAction(e -> popupwindow.close());
+
+        VBox layout= new VBox(10);
+        layout.getChildren().addAll(content,closeButton);
+        layout.setAlignment(Pos.CENTER);
+        Scene scene= new Scene(layout, 300, 250);
+        popupwindow.setScene(scene);
+        popupwindow.showAndWait();
     }
 
 }

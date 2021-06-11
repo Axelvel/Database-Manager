@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.views.PopUp;
 import classes.Controller;
 import app.Model;
 import classes.User;
@@ -47,7 +48,6 @@ public class LoginController extends Controller {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-
         if (DatabaseConnection.getInstance().getUsers().passwordMatch(username, password)) {
             System.out.println("Login!");
             int userIndex = DatabaseConnection.getInstance().getUsers().getUserIndex(username);
@@ -55,7 +55,7 @@ public class LoginController extends Controller {
             dataModel.setCurrentUser(user);
             gotoProfile();
         } else {
-            System.out.println("Refused");
+            PopUp.displayMessage("WARNING","Wrong username or password");
         }
     }
 }
