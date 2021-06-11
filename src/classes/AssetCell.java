@@ -1,6 +1,7 @@
 package classes;
 
 import app.Type;
+import app.controllers.MainController;
 import app.views.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

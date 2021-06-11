@@ -165,7 +165,4 @@ public class MainController extends Controller implements Initializable {
         refreshLabel();
     }
 
-    /*public void showAssetDetails() throws IOException {
-        PopUp.displayAssetDetails(DatabaseConnection.getInstance().getInventory().getAsset(getInventoryIndex()));
-    }*/
 }
