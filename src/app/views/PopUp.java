@@ -4,20 +4,29 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Pop up window that show whenever the application has to give an information to the user
  */
 public class PopUp {
 
-    public static void display(String text)
-    {
+    public static void display(String text) throws IOException {
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);
         popupwindow.setTitle("WARNING");
+        /*String imagePath = "./resources/infoIcon.png";
+        Image applicationIcon = new Image(PopUp.class.getResourceAsStream(imagePath));
+        popupwindow.getIcons().add(applicationIcon);*/
+
+        //popupwindow.getIcons().add( new Image( PopUp.class.getResourceAsStream( "./resources/infoIcon.png" )));
 
         Label label1= new Label(text);
 
