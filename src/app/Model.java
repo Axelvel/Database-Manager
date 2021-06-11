@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 /**
  * Model of the program
- * Contains the user, the database and the connection to sqlite databases
+ * Contains the current user, or other useful parameters
  */
 public class Model {
 

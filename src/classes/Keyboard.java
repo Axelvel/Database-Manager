@@ -2,6 +2,10 @@ package classes;
 
 import app.Type;
 
+/**
+ * Keyboard class
+ * Each keyboard can be wireless or not, and has different types of switches (membranes, mechanical and rubber domes)
+ */
 public class Keyboard extends Asset{
 
     private String brand;
@@ -16,11 +20,9 @@ public class Keyboard extends Asset{
         this.switches = switches;
     }
 
-    @Override
-    public void showAsset() {
-        super.showAsset();
-        System.out.println("\nCharacteristics :\nBrand : " + getBrand() + "\nWireless : " + getWireless() + "\nSwitches : "
-                + getSwitches());
+    public String toString(){
+        return super.toString() + "\nCharacteristics :\nBrand : " + getBrand() + "\nWireless : " + getWireless() + "\nSwitches : "
+                + getSwitches();
     }
 
     @Override

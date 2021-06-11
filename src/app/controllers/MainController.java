@@ -30,7 +30,7 @@ public class MainController extends Controller implements Initializable {
     private GridPane root;
 
     @FXML
-    private Label mainLabel;
+    private Label label;
 
     @FXML
     private ListView<Asset> inventoryList;
@@ -74,7 +74,7 @@ public class MainController extends Controller implements Initializable {
      * Set the user's name on the main label
      */
     public void refreshLabel() {
-        this.mainLabel.setText("Welcome back, " + dataModel.getCurrentUser().getName() + " " +
+        this.label.setText("Welcome back, " + dataModel.getCurrentUser().getName() + " " +
                 dataModel.getCurrentUser().getLastName());
     }
 

@@ -23,10 +23,9 @@ public class Computer extends Asset {
     }
 
     @Override
-    public void showAsset() {
-        super.showAsset();
-        System.out.println("\nCharacteristics :\nBrand : " + this.getBrand() + "\nOS : " + this.os + "\nMemory : "
-                + this.memory + "\nRAM : " + this.ram);
+    public String toString(){
+        return super.toString() + "\"nCharacteristics :\nBrand : " + this.getBrand() + "\nOS : " + this.os + "\nMemory : "
+                + this.memory + "\nRAM : " + this.ram;
     }
 
     //Getters

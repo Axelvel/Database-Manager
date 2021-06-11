@@ -7,7 +7,6 @@ import java.util.List;
  * class used in order to store the assets found in the sqlite database
  */
 public class Inventory {
-
     private List<Asset> database = new ArrayList<Asset>();
 
     public List<Asset> getDatabase() {
@@ -40,7 +39,7 @@ public class Inventory {
 
     public void showDatabase() {
         database.forEach(asset -> {
-            asset.showAsset();
+            System.out.println(asset);
         });
     }
 }

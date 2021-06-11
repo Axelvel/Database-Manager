@@ -1,6 +1,5 @@
 package classes;
 
-import app.Type;
 import app.views.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +14,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
+
+/**
+ * Custom user cell, used for the cell factory of the ListCell in the MainView
+ */
 public class UserCell extends ListCell<User> {
 
     private User user;
@@ -77,10 +80,13 @@ public class UserCell extends ListCell<User> {
         }
     }
 
+    /**
+     * Open a popup containing all the user information
+     * @throws IOException
+     */
     @FXML
     public void showUserDetails() throws IOException {
         PopUp.displayUserDetails(user);
-        //PopUp.displayAssetDetails(asset);
     }
 
 }

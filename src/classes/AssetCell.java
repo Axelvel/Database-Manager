@@ -11,12 +11,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * Custom asset cell, used for the cell factory of the ListCell in the MainView
+ */
 public class AssetCell extends ListCell<Asset> {
 
     @FXML
@@ -33,7 +35,6 @@ public class AssetCell extends ListCell<Asset> {
     private Button detailsButton;
 
     private Image icon;
-
     private Asset asset;
 
     @Override
@@ -93,6 +94,10 @@ public class AssetCell extends ListCell<Asset> {
             }
     }
 
+    /**
+     * Open a popup containing all the asset information
+     * @throws IOException
+     */
     @FXML
     public void showAssetDetails() throws IOException {
         PopUp.displayAssetDetails(asset);

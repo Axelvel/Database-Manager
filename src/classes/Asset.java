@@ -27,9 +27,10 @@ public abstract class Asset {
     public String getStatus() { return this.status; }
 
     public boolean isAvailable() { return this.availability; }
-    public void showAsset() {
-        System.out.println("ASSET " + this.getCode() + "\nType : "+this.getType()
-                +"\nStatus :"+getStatus()+"\nAvailability :"+isAvailable());
+
+    public String toString(){
+        return "ASSET " + this.getCode() + "\nType : "+this.getType()
+                +"\nStatus :"+getStatus()+"\nAvailability :"+isAvailable();
     }
 
     public void setCode(String code) { this.code = code; }

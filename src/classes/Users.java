@@ -3,9 +3,10 @@ package classes;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * class used in order to store the users found in the sqlite database
+ */
 public class Users {
-
-
     private List<User> users = new ArrayList<User>();
 
     public List<User> getUsers() {
@@ -29,9 +30,7 @@ public class Users {
     public String getUserUsername(String username) {
 
         for(int i = 0; i < this.users.size(); i++) {
-            if (this.users.get(i).getUsername().equals(username)) {
-                return users.get(i).getUsername();
-            }
+            if (this.users.get(i).getUsername().equals(username))return users.get(i).getUsername();
         }
         return null;
     }
@@ -40,22 +39,16 @@ public class Users {
 
         for (int i = 0; i < this.users.size(); i++) {
             if (users.get(i).getUsername().equals(username)) {
-                if (users.get(i).getPassword().equals(password)) {
-                    return true;
-                }
+                if (users.get(i).getPassword().equals(password))return true;
             }
         }
-
         return  false;
-
     }
 
     public int getUserIndex(String username) {
 
         for(int i = 0; i < this.users.size(); i++) {
-            if (this.users.get(i).getUsername().equals(username)) {
-                return users.indexOf(users.get(i));
-            }
+            if (this.users.get(i).getUsername().equals(username)) return users.indexOf(users.get(i));
         }
         return -1;
     }

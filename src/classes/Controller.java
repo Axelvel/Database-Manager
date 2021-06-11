@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
+//TODO : add comments
 public abstract class Controller {
 
     public Model dataModel;

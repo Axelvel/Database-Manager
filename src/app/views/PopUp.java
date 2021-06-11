@@ -25,6 +25,11 @@ import java.io.IOException;
  */
 public class PopUp {
 
+    /**
+     * Create the stage and prepare it for the future information to be added
+     * @return Stage
+     * @throws FileNotFoundException
+     */
     private static Stage initialize() throws FileNotFoundException {
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);
@@ -34,6 +39,12 @@ public class PopUp {
         return popupwindow;
     }
 
+    /**
+     * Add a simple message to the window
+     * @param infoType : type of message, used for title
+     * @param text : message's content
+     * @throws IOException
+     */
     public static void displayMessage(String infoType, String text) throws IOException {
         Stage popupwindow = initialize();
         popupwindow.setTitle(infoType);
@@ -51,6 +62,11 @@ public class PopUp {
         popupwindow.showAndWait();
     }
 
+    /**
+     * Add asset information to the window
+     * @param asset : asset to display
+     * @throws IOException
+     */
     public static void displayAssetDetails(Asset asset) throws IOException {
         Stage popupwindow = initialize();
         popupwindow.setTitle("ASSET DETAILS");
@@ -123,15 +139,18 @@ public class PopUp {
         closeButton.setOnAction(e -> popupwindow.close());
 
         VBox layout= new VBox(10);
-        layout.getChildren().addAll(content,closeButton);
+        layout.getChildren().addAll(title,content,closeButton);
         layout.setAlignment(Pos.CENTER);
         Scene scene= new Scene(layout, 300, 250);
         popupwindow.setScene(scene);
         popupwindow.showAndWait();
-
-
     }
 
+    /**
+     * Add user information to the window
+     * @param user : user to display
+     * @throws IOException
+     */
     public static void displayUserDetails(User user) throws IOException{
         Stage popupwindow = initialize();
         popupwindow.setTitle("USER DETAILS");
