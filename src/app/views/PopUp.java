@@ -20,10 +20,10 @@ import java.io.IOException;
  */
 public class PopUp {
 
-    public static void display(String text) throws IOException {
+    public static void display(String infoType, String text) throws IOException {
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);
-        popupwindow.setTitle("WARNING");
+        popupwindow.setTitle(infoType);
 
         FileInputStream inputstream = new FileInputStream("src/resources/infoIcon.png");
         Image popupIcon = new Image(inputstream);

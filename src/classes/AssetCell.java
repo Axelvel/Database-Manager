@@ -1,6 +1,7 @@
 package classes;
 
 import app.Type;
+import app.views.PopUp;
 import classes.Asset;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -40,10 +42,13 @@ public class AssetCell extends ListCell<Asset> {
 
     private Image icon;
 
+    private Asset asset;
+
     @Override
     public void updateItem(Asset asset, boolean empty) {
 
         super.updateItem(asset, empty);
+        this.asset = asset;
         if (empty || asset == null) {
             setText(null);
             setGraphic(null);
@@ -66,8 +71,10 @@ public class AssetCell extends ListCell<Asset> {
 
             if(asset.isAvailable()) {
                 availabilityLabel.setText("Available");
+                availabilityLabel.setTextFill(Color.GREEN);
             }else{
                 availabilityLabel.setText("Not available");
+                availabilityLabel.setTextFill(Color.RED);
             }
             FileInputStream inputstream = null;
             if(asset.getType() == Type.COMPUTER){
@@ -92,5 +99,24 @@ public class AssetCell extends ListCell<Asset> {
             setText(null);
             setGraphic(cellPane);
             }
+    }
+
+    @FXML
+    public void showAssetDetails() throws IOException {
+        String content = "ASSET INFORMATION :";
+        content += "\nAsset type : " + asset.getType();
+        content += "\nCondition : " + asset.getStatus();
+        content += "\nAvailability : " + asset.isAvailable();
+        content += "\nBrand : " + asset.getBrand();
+
+        if(asset.getType() == Type.COMPUTER){
+            content += "\nOs : " + asset.getOs();
+            content += "\nMemory : " + asset.getMemory();
+            content += "\nRam : " + asset.getRam();
+        }else if(asset.getType() == Type.KEYBOARD){
+            content += "\nWireless : " + asset.getWireless();
+            content += "\nSwitches : " + asset.getSwitches();
+        }
+        PopUp.display("ASSET DETAILS",content);
     }
 }

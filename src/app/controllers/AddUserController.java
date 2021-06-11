@@ -48,7 +48,7 @@ public class AddUserController extends Controller {
         ResultSet checkUserExists = DatabaseConnection.getInstance().query(
                 "SELECT * FROM users_table WHERE user_username = '"+username+"'");
         if(checkUserExists.next()){
-            PopUp.display("Username already taken");
+            PopUp.display("WARNING","Username already taken");
         }else{
             String password = passwordField.getText();
 
