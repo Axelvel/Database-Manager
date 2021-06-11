@@ -15,7 +15,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
+/**
+ * Controller class for the AddAssetView fxml file
+ */
 public class AddAssetController extends Controller {
 
     private MainController mainCtrl;
@@ -32,45 +34,6 @@ public class AddAssetController extends Controller {
     private TextField nameField;
 
     @FXML
-    private RadioButton statusToggle1;
-
-    @FXML
-    private RadioButton statusToggle2;
-
-    @FXML
-    private RadioButton statusToggle3;
-
-    @FXML
-    private RadioButton statusToggle4;
-
-    @FXML
-    private RadioButton osToggle1;
-
-    @FXML
-    private RadioButton osToggle2;
-
-    @FXML
-    private RadioButton osToggle3;
-
-    @FXML
-    private RadioButton wireless;
-
-    @FXML
-    private RadioButton switchesMechanical;
-
-    @FXML
-    private RadioButton switchesMembrane;
-
-    @FXML
-    private RadioButton switchesRubber;
-
-    @FXML
-    private RadioButton typeComputer;
-
-    @FXML
-    private RadioButton typeKeyboard;
-
-    @FXML
     private TextField brandTextField;
 
     @FXML
@@ -78,6 +41,15 @@ public class AddAssetController extends Controller {
 
     @FXML
     private TextField ramTextField;
+
+    @FXML
+    private RadioButton wireless;
+
+    @FXML
+    private RadioButton typeComputer;
+
+    @FXML
+    private RadioButton typeKeyboard;
 
     @FXML
     private VBox computerAttributes;
@@ -97,20 +69,28 @@ public class AddAssetController extends Controller {
     @FXML
     private ToggleGroup switchesGroup;
 
+    /**
+     * Switch the scene with the main view
+     * @throws Exception
+     */
     @FXML
     public void goBack() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         mainCtrl.refreshDataList();
-        changeScene(window, "../views/mainView.fxml", mainCtrl, 600, 700);
+        changeScene(window, "../views/MainView.fxml", mainCtrl, 600, 700);
     }
 
+    /**
+     * Add a new asset to the database with the informations given
+     * by the user
+     * @throws Exception
+     */
     @FXML
     public void addAsset() throws Exception {
         RadioButton selectedRadioButton = (RadioButton) statusGroup.getSelectedToggle();
         String status = selectedRadioButton.getText();
 
         if(typeComputer.isSelected()){
-
             //count the number of computers in the database
             int nbComputers = DatabaseConnection.getInstance().count("computers_table") + 1;
             String code = "COMP" + nbComputers;
@@ -141,11 +121,17 @@ public class AddAssetController extends Controller {
         }
     }
 
+    /**
+     * Show the computer attributes panel
+     */
     public void switchComputersAttribute(){
         computerAttributes.setVisible(true);
         computerAttributes.toFront();
     }
 
+    /**
+     * Show the keyboard attributes panel
+     */
     public void switchKeyboardsAttribute(){
         keyboardAttributes.setVisible(true);
         keyboardAttributes.toFront();

@@ -13,10 +13,10 @@
 
     <VBox alignment="CENTER" spacing="20">
         <Label text="Add User"/>
-        <TextField fx:id="usernameField">Username</TextField>
-        <TextField fx:id="passwordField">Password</TextField>
-        <TextField fx:id="nameField">Name</TextField>
-        <TextField fx:id="lastnameField">Lastname</TextField>
+        <TextField fx:id="usernameField" promptText="Username"></TextField>
+        <TextField fx:id="passwordField" promptText="Password"></TextField>
+        <TextField fx:id="nameField" promptText="Name"></TextField>
+        <TextField fx:id="lastnameField" promptText="Last name"></TextField>
 
         <Text>Admin</Text>
         <HBox spacing="20" alignment="CENTER">

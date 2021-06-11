@@ -17,7 +17,7 @@ public class Main extends Application {
         Model dataModel = new Model();
         Controller logController = new LoginController(dataModel);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/loginView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/LoginView.fxml"));
         loader.setController(logController);
         Parent root = loader.load();
 
@@ -26,7 +26,6 @@ public class Main extends Application {
         primaryStage.setTitle("IT Asset Manager");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.initStyle(StageStyle.DECORATED);
-        //primaryStage.sizeToScene();
 
         primaryStage.show();
         }

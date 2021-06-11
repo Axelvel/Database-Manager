@@ -16,6 +16,9 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the UpdateAssetView fxml file
+ */
 public class UpdateAssetController extends Controller implements Initializable {
 
     private Asset asset;
@@ -64,9 +67,6 @@ public class UpdateAssetController extends Controller implements Initializable {
     private RadioButton wireless;
 
     @FXML
-    private RadioButton notWireless;
-
-    @FXML
     private RadioButton switchesMechanical;
 
     @FXML
@@ -74,9 +74,6 @@ public class UpdateAssetController extends Controller implements Initializable {
 
     @FXML
     private RadioButton switchesRubber;
-
-    @FXML
-    private RadioButton typeComputer;
 
     @FXML
     private TextField brandTextField;
@@ -102,14 +99,21 @@ public class UpdateAssetController extends Controller implements Initializable {
     @FXML
     private ToggleGroup switchesGroup;
 
-
+    /**
+     * Switch the scene with the main view
+     * @throws Exception
+     */
     @FXML
     public void goBack() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new MainController(this.dataModel);
-        changeScene(window, "../views/mainView.fxml", controller, 600, 700);
+        changeScene(window, "../views/MainView.fxml", controller, 600, 700);
     }
 
+    /**
+     * Update the asset according to the information the user has given
+     * @throws Exception
+     */
     @FXML
     public void updateAsset() throws Exception {
 
@@ -137,7 +141,11 @@ public class UpdateAssetController extends Controller implements Initializable {
         goBack();
     }
 
-
+    /**
+     * Sets the default value according to the selected asset values
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -181,11 +189,17 @@ public class UpdateAssetController extends Controller implements Initializable {
 
     }
 
+    /**
+     * Show the computer attributes panel
+     */
     public void switchComputersAttribute(){
         computerAttributes.setVisible(true);
         computerAttributes.toFront();
     }
 
+    /**
+     * Show the keyboard attributes panel
+     */
     public void switchKeyboardsAttribute(){
         keyboardAttributes.setVisible(true);
         keyboardAttributes.toFront();

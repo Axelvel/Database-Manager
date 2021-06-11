@@ -6,24 +6,18 @@ import app.Model;
 import classes.User;
 import database.DatabaseConnection;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
-
-
+/**
+ * Controller class for the LoginController fxml file
+ */
 public class LoginController extends Controller {
 
     public LoginController(Model dataModel) {
         super(dataModel);
     }
-
 
     @FXML
     private GridPane root;
@@ -34,14 +28,22 @@ public class LoginController extends Controller {
     @FXML
     private TextField passwordField;
 
-
-    private void gotoProfile() throws Exception {
+    /**
+     * After connection, switch the scene to the main view
+     * @throws Exception
+     */
+    private void gotoMain() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new MainController(this.dataModel);
-        changeScene(window, "../views/mainView.fxml", controller, 600, 700);
+        changeScene(window, "../views/MainView.fxml", controller, 600, 700);
         window.setMaximized(true);
     }
 
+    /**
+     * Checks if the username and the password matches a user in the database
+     * and if yes, connect the user
+     * @throws Exception
+     */
     @FXML
     public void login() throws Exception {
 
@@ -53,7 +55,7 @@ public class LoginController extends Controller {
             int userIndex = DatabaseConnection.getInstance().getUsers().getUserIndex(username);
             User user = DatabaseConnection.getInstance().getUsers().getUsers().get(userIndex);
             dataModel.setCurrentUser(user);
-            gotoProfile();
+            gotoMain();
         } else {
             PopUp.displayMessage("WARNING","Wrong username or password");
         }

@@ -12,6 +12,9 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.sql.ResultSet;
 
+/**
+ * Controller class for the AddUserView fxml file
+ */
 public class AddUserController extends Controller {
 
     private MainController mainCtrl;
@@ -20,6 +23,7 @@ public class AddUserController extends Controller {
         super(dataModel);
         this.mainCtrl = mainCtrl;
     }
+
     @FXML
     private GridPane root;
 
@@ -37,9 +41,14 @@ public class AddUserController extends Controller {
 
     @FXML
     private RadioButton statusToggle1;
+
     @FXML
     private RadioButton statusToggle2;
 
+    /**
+     * Add an user profile depending on what informations the current user has given
+     * @throws Exception
+     */
     @FXML
     public void addUser() throws Exception {
 
@@ -62,10 +71,14 @@ public class AddUserController extends Controller {
         }
     }
 
+    /**
+     * Switch the scene with the main view
+     * @throws Exception
+     */
     @FXML
     public void goBack() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         mainCtrl.refreshDataList();
-        changeScene(window, "../views/mainView.fxml", mainCtrl, 600, 700);
+        changeScene(window, "../views/MainView.fxml", mainCtrl, 600, 700);
     }
 }

@@ -15,7 +15,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+/**
+ * Controller class for the MainView fxml file
+ */
 public class MainController extends Controller implements Initializable {
+    private ObservableList<Asset> assetObservableList;
+    private ObservableList<User> userObservableList;
 
     public MainController(Model dataModel) {
         super(dataModel);
@@ -25,7 +30,7 @@ public class MainController extends Controller implements Initializable {
     private GridPane root;
 
     @FXML
-    private Label label;
+    private Label mainLabel;
 
     @FXML
     private ListView<Asset> inventoryList;
@@ -45,9 +50,10 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private Button disconnectButton;
 
-    private ObservableList<Asset> assetObservableList;
-    private ObservableList<User> userObservableList;
-
+    /**
+     * Clear all items in the inventory and users list, and
+     * fill it back according to the database content
+     */
     public void refreshDataList() {
 
         inventoryList.getItems().clear();
@@ -62,37 +68,48 @@ public class MainController extends Controller implements Initializable {
         userObservableList.addAll(DatabaseConnection.getInstance().getUsers().getUsers());
         userList.setItems(userObservableList);
         userList.setCellFactory(assetListView -> new UserCell());
-        /*DatabaseConnection.getInstance().getUsers().getUsers().forEach(user -> {
-            userList.getItems().add(user.getName() + user.getLastName() + " / Admin: " + user.isAdmin());
-        });*/
     }
 
+    /**
+     * Set the user's name on the main label
+     */
     public void refreshLabel() {
-        this.label.setText("Welcome back, " + dataModel.getCurrentUser().getName() + " " + dataModel.getCurrentUser().getLastName());
+        this.mainLabel.setText("Welcome back, " + dataModel.getCurrentUser().getName() + " " +
+                dataModel.getCurrentUser().getLastName());
     }
 
 
+    /**
+     * Disconnect and goes back to the login view
+     * @throws Exception
+     */
     @FXML
     private void goToLogin() throws Exception {
-
         dataModel.setCurrentUser(null);
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new LoginController(dataModel);
-        changeScene(window, "../views/loginView.fxml", controller, 300, 275);
+        changeScene(window, "../views/LoginView.fxml", controller, 300, 275);
     }
 
+    /**
+     * Switch the scene with AddAssetView
+     * @throws Exception
+     */
     @FXML
     private void goToAdd() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new AddAssetController(dataModel,this);
-        changeScene(window, "../views/addAssetView.fxml", controller, 400, 600);
+        changeScene(window, "../views/AddAssetView.fxml", controller, 400, 600);
     }
 
+    /**
+     * Checks if the user wants to deleter an asset or an user
+     * @throws SQLException
+     */
     @FXML
     private void deleteAction() throws SQLException{
         int tabIndex = managerPane.getSelectionModel().getSelectedIndex();
         // 0 si "Inventory", 1 si c'est tab "Users"
-
         if (tabIndex == 0) {
             deleteAsset();
         }
@@ -101,6 +118,10 @@ public class MainController extends Controller implements Initializable {
         }
     }
 
+    /**
+     * Delete the selected asset
+     * @throws SQLException
+     */
     private void deleteAsset() throws SQLException {
         int index = getInventoryIndex();
         if (index != -1) {
@@ -110,7 +131,10 @@ public class MainController extends Controller implements Initializable {
         refreshDataList();
     }
 
-
+    /**
+     * Delete the selected user
+     * @throws SQLException
+     */
     private void deleteUser() throws SQLException {
         int index = getUserIndex();
 
@@ -128,6 +152,11 @@ public class MainController extends Controller implements Initializable {
         refreshDataList();
     }
 
+    /**
+     * Switch the scene to UpdateAssetController in order
+     * to update the selected asset
+     * @throws Exception
+     */
     @FXML
     private void updateAsset() throws Exception {
         int index = getInventoryIndex();
@@ -136,26 +165,43 @@ public class MainController extends Controller implements Initializable {
             Stage window = (Stage) root.getScene().getWindow();
             Controller controller = new UpdateAssetController(dataModel, this, asset);
             //SELON LE TYPE D'ASSET? CHAMPS DIFFERENTS
-            changeScene(window, "../views/updateAssetView.fxml", controller, 400, 600);
+            changeScene(window, "../views/UpdateAssetView.fxml", controller, 400, 600);
 
         }
     }
 
+    /**
+     * Switch the scene to AddUserView
+     * @throws Exception
+     */
     @FXML
     private void goToAddUser() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new AddUserController(dataModel,this);
-        changeScene(window, "../views/addUserView.fxml", controller, 400, 400);
+        changeScene(window, "../views/AddUserView.fxml", controller, 400, 400);
     }
 
+    /**
+     * Get the index of the selected asset
+     * @return index
+     */
     private int getInventoryIndex() {
         return inventoryList.getSelectionModel().getSelectedIndex();
     }
 
+    /**
+     * Get the index of the selected user
+     * @return index
+     */
     private int getUserIndex() {
         return userList.getSelectionModel().getSelectedIndex();
     }
 
+    /**
+     * Initialize the layout when the scene is loaded
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         refreshDataList();
