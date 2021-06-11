@@ -5,12 +5,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
@@ -22,20 +24,20 @@ public class PopUp {
         Stage popupwindow = new Stage();
         popupwindow.initModality(Modality.APPLICATION_MODAL);
         popupwindow.setTitle("WARNING");
-        /*String imagePath = "./resources/infoIcon.png";
-        Image applicationIcon = new Image(PopUp.class.getResourceAsStream(imagePath));
-        popupwindow.getIcons().add(applicationIcon);*/
 
-        //popupwindow.getIcons().add( new Image( PopUp.class.getResourceAsStream( "./resources/infoIcon.png" )));
+        FileInputStream inputstream = new FileInputStream("src/resources/infoIcon.png");
+        Image popupIcon = new Image(inputstream);
 
-        Label label1= new Label(text);
+        popupwindow.getIcons().add(popupIcon);
 
-        Button button1= new Button("Close");
-        button1.setOnAction(e -> popupwindow.close());
+        Label infoText= new Label(text);
+
+        Button closeButton= new Button("Close");
+        closeButton.setOnAction(e -> popupwindow.close());
 
         VBox layout= new VBox(10);
 
-        layout.getChildren().addAll(label1, button1);
+        layout.getChildren().addAll(infoText, closeButton);
         layout.setAlignment(Pos.CENTER);
         Scene scene1= new Scene(layout, 300, 150);
         popupwindow.setScene(scene1);
