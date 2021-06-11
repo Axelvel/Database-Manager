@@ -51,7 +51,6 @@ public class LoginController extends Controller {
         String password = passwordField.getText();
 
         if (DatabaseConnection.getInstance().getUsers().passwordMatch(username, password)) {
-            System.out.println("Login!");
             int userIndex = DatabaseConnection.getInstance().getUsers().getUserIndex(username);
             User user = DatabaseConnection.getInstance().getUsers().getUsers().get(userIndex);
             dataModel.setCurrentUser(user);
@@ -59,5 +58,14 @@ public class LoginController extends Controller {
         } else {
             PopUp.displayMessage("WARNING","Wrong username or password");
         }
+    }
+
+    /**
+     * Quit the application and close the database connection
+     */
+    @FXML
+    public void quit(){
+        DatabaseConnection.getInstance().close();
+        System.exit(0);
     }
 }

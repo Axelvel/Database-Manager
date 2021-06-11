@@ -27,9 +27,14 @@
                 <ListView fx:id="userList" maxWidth="Infinity" />
             </Tab>
         </TabPane>
-
-
-        <Button fx:id="disconnectButton" onAction="#goToLogin" text="Disconnect" />
+      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quit" style="-fx-background-color: red;" text="Quit" />
+      
+      
+              <Button fx:id="disconnectButton" onAction="#goToLogin" style="-fx-background-color: lightblue;" text="Disconnect" />
+        </buttons>
+      </ButtonBar>
     </VBox>
    <columnConstraints>
       <ColumnConstraints />

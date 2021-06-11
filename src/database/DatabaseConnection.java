@@ -48,10 +48,8 @@ public class DatabaseConnection {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:"+dbPath);
             statement = connection.createStatement();
-            System.out.println("Connection");
         } catch(SQLException sqlException){
             sqlException.printStackTrace();
-            System.out.println("Connection error");
         }
     }
 

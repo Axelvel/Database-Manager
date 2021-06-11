@@ -208,4 +208,13 @@ public class MainController extends Controller implements Initializable {
         refreshLabel();
     }
 
+    /**
+     * Quit the application and close the database connection
+     */
+    @FXML
+    public void quit(){
+        DatabaseConnection.getInstance().close();
+        System.exit(0);
+    }
+
 }
