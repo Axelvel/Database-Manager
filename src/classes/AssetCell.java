@@ -2,22 +2,15 @@ package classes;
 
 import app.Type;
 import app.views.PopUp;
-import classes.Asset;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -103,20 +96,6 @@ public class AssetCell extends ListCell<Asset> {
 
     @FXML
     public void showAssetDetails() throws IOException {
-        String content = "ASSET INFORMATION :";
-        content += "\nAsset type : " + asset.getType();
-        content += "\nCondition : " + asset.getStatus();
-        content += "\nAvailability : " + asset.isAvailable();
-        content += "\nBrand : " + asset.getBrand();
-
-        if(asset.getType() == Type.COMPUTER){
-            content += "\nOs : " + asset.getOs();
-            content += "\nMemory : " + asset.getMemory();
-            content += "\nRam : " + asset.getRam();
-        }else if(asset.getType() == Type.KEYBOARD){
-            content += "\nWireless : " + asset.getWireless();
-            content += "\nSwitches : " + asset.getSwitches();
-        }
-        PopUp.display("ASSET DETAILS",content);
+        PopUp.displayAssetDetails(asset);
     }
 }

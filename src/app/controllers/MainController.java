@@ -1,6 +1,6 @@
 package app.controllers;
 
-import app.Type;
+import app.views.PopUp;
 import classes.AssetCell;
 import classes.Controller;
 import app.Model;
@@ -9,18 +9,11 @@ import classes.User;
 import database.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -39,6 +32,7 @@ public class MainController extends Controller implements Initializable {
 
     @FXML
     private Label label;
+
     @FXML
     private ListView<Asset> inventoryList;
 
@@ -169,19 +163,9 @@ public class MainController extends Controller implements Initializable {
 
         refreshDataList();
         refreshLabel();
-
-        //TODO: Faire tourner le thread en continu
-
-        /*Task<Void> task = new Task<>() {
-            @Override public Void call() throws SQLException {
-                refreshDataList();
-                refreshLabel();
-                return null;
-            }
-        };
-
-        new Thread(task).start();
-
-        */
     }
+
+    /*public void showAssetDetails() throws IOException {
+        PopUp.displayAssetDetails(DatabaseConnection.getInstance().getInventory().getAsset(getInventoryIndex()));
+    }*/
 }
