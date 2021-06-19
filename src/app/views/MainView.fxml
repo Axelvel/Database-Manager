@@ -13,10 +13,14 @@
          </font></Label>
         <HBox spacing="20">
             <Button onAction="#refreshDataList" text="Refresh" />
-            <Button onAction="#goToAdd" text="Add" />
-            <Button onAction="#deleteAction" text="Delete" />
-            <Button onAction="#updateAsset" text="Update Asset" />
-            <Button onAction="#goToAddUser" text="Add User" />
+            <HBox fx:id="adminPane" spacing="20">
+                <Button onAction="#goToAdd" text="Add" />
+                <Button onAction="#deleteAction" text="Delete" />
+                <Button onAction="#updateAsset" text="Update Asset" />
+                <Button onAction="#goToAddUser" text="Add User" />
+
+            </HBox>
+
         </HBox>
 
         <TabPane fx:id="managerPane" maxWidth="Infinity" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://www.w3.org/2001/XInclude">

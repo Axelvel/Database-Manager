@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import java.sql.SQLException;
 import java.net.URL;
@@ -50,6 +51,9 @@ public class MainController extends Controller implements Initializable {
     @FXML
     private Button disconnectButton;
 
+    @FXML
+    private HBox adminPane;
+
     /**
      * Clear all items in the inventory and users list, and
      * fill it back according to the database content
@@ -68,6 +72,7 @@ public class MainController extends Controller implements Initializable {
         userObservableList.addAll(DatabaseConnection.getInstance().getUsers().getUsers());
         userList.setItems(userObservableList);
         userList.setCellFactory(assetListView -> new UserCell());
+
     }
 
     /**
@@ -76,6 +81,13 @@ public class MainController extends Controller implements Initializable {
     public void refreshLabel() {
         this.label.setText("Welcome back, " + dataModel.getCurrentUser().getName() + " " +
                 dataModel.getCurrentUser().getLastName());
+    }
+
+    public void hideAdminOptions() {
+        if (!dataModel.getCurrentUser().isAdmin()) {
+            adminPane.setVisible(false);
+            userPane.setDisable(true);
+        }
     }
 
 
@@ -206,6 +218,7 @@ public class MainController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         refreshDataList();
         refreshLabel();
+        hideAdminOptions();
     }
 
     /**
