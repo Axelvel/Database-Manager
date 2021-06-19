@@ -11,12 +11,12 @@
         <children>
             <Label prefHeight="43.0" prefWidth="343.0" text="UPDATE AN ASSET">
                 <font>
-                    <Font size="29.0" />
+                    <Font name = "Verdana" size="29.0" />
                 </font>
             </Label>
          <Text layoutX="148.0" layoutY="133.0" text="AVAILABILITY :">
             <font>
-               <Font size="20.0" />
+               <Font name = "Verdana" size="20.0" />
             </font>
          </Text>
          <Group layoutX="-61.0" layoutY="120.0">
@@ -31,7 +31,7 @@
          </Group>
             <Text text="STATUS :">
                 <font>
-                    <Font size="20.0" />
+                    <Font name = "Verdana" size="20.0" />
                 </font></Text>
             <Group>
                 <children>
@@ -47,7 +47,7 @@
             </Group>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BRAND :">
                 <font>
-                    <Font size="20.0" />
+                    <Font name = "Verdana" size="20.0" />
                 </font></Text>
             <TextField fx:id="brandTextField" />
 
@@ -61,7 +61,7 @@
                 <children>
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="OS :">
                         <font>
-                            <Font size="20.0" />
+                            <Font name = "Verdana" size="20.0" />
                         </font>
                     </Text>
                     <HBox alignment="CENTER" prefHeight="20.0" prefWidth="134.0" spacing="10.0">
@@ -77,13 +77,13 @@
                     </HBox>
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MEMORY :">
                         <font>
-                            <Font size="20.0" />
+                            <Font name = "Verdana" size="20.0" />
                         </font>
                     </Text>
                     <TextField fx:id="memoryTextField" />
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="RAM :">
                         <font>
-                            <Font size="20.0" />
+                            <Font name = "Verdana" size="20.0" />
                         </font>
                     </Text>
                     <TextField fx:id="ramTextField" />
@@ -96,7 +96,7 @@
                 <children>
                     <Label text="Wireless">
                         <font>
-                            <Font size="24.0" />
+                            <Font name = "Verdana" size="24.0" />
                         </font>
                     </Label>
                     <Group>
@@ -111,7 +111,7 @@
                     </Group>
                     <Label text="Switches">
                         <font>
-                            <Font size="24.0" />
+                            <Font name = "Verdana" size="24.0" />
                         </font>
                     </Label>
                     <Group>

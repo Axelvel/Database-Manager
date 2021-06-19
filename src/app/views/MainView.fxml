@@ -9,7 +9,7 @@
     <VBox alignment="CENTER" prefWidth="700.0" spacing="20">
         <Label fx:id="label" textFill="BLACK">
          <font>
-            <Font size="24.0" />
+            <Font name = "Verdana" size="24.0" />
          </font></Label>
         <HBox spacing="20">
             <Button onAction="#refreshDataList" text="Refresh" />
