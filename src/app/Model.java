@@ -1,27 +1,34 @@
 package app;
 
+import classes.Computer;
+import classes.Inventory;
+import classes.User;
+import classes.Users;
+import database.DatabaseConnection;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ * Model of the program
+ * Contains the current user, or other useful parameters
+ */
 public class Model {
 
-    public Users users = new Users();
-    public Database database = new Database();
+    private User currentUser;
 
+    public Model() throws SQLException {
+        // DATABASE CONNECTION AND INITIALIZATION
+        DatabaseConnection.getInstance().connect();
+        DatabaseConnection.getInstance().refreshDatabase();
+    }
 
-    public Model() {
+    public User getCurrentUser() {
+        return currentUser;
+    }
 
-        //Creating new users
-        User user1 = new User(1, "abc", "pass", "Jean", "Robert", true);
-        User user2 = new User(2, "xyz", "word", "Jeanne", "Roberta", true);
-
-        //Creating new assets
-        Computer comp1 = new Computer(1, 1,"Computer1", true,true, "Window10", 1024, 16);
-        Asset asset1 = new Asset(2,1, "Asset2", true, false);
-
-        users.addUser(user1);
-        users.addUser(user2);
-
-        database.addAsset(comp1);
-        database.addAsset(asset1);
-
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
     }
 
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:id="root" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <VBox alignment="CENTER" spacing="20">
+        <Label focusTraversable="true" text="IT Asset Manager" />
+        <TextField fx:id="usernameField" promptText="Username" />
+        <TextField fx:id="passwordField" promptText="Password" />
+
+    </VBox>
+   <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="1">
+     <buttons>
+       <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quit" style="-fx-background-color: red;" text="Quit" textAlignment="CENTER" />
+           <Button fx:id="loginButton" onAction="#login" style="-fx-background-color: lightgreen;" text="Login" />
+     </buttons>
+   </ButtonBar>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+
+</GridPane>

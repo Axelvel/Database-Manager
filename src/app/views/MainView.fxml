@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:id="root" alignment="center" hgap="10" style="-fx-color: linear-gradient(to right, red, blue);;" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <VBox alignment="CENTER" prefWidth="700.0" spacing="20">
+        <Label fx:id="label" textFill="BLACK">
+         <font>
+            <Font name = "Verdana" size="24.0" />
+         </font></Label>
+        <HBox spacing="20">
+            <Button onAction="#refreshDataList" text="Refresh" />
+            <HBox fx:id="adminPane" spacing="20">
+                <Button onAction="#goToAdd" text="Add" />
+                <Button onAction="#deleteAction" text="Delete" />
+                <Button onAction="#updateAsset" text="Update Asset" />
+                <Button onAction="#goToAddUser" text="Add User" />
+
+            </HBox>
+
+        </HBox>
+
+        <TabPane fx:id="managerPane" maxWidth="Infinity" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://www.w3.org/2001/XInclude">
+            <Tab fx:id="inventoryPane" text="Inventory">
+                <ListView fx:id="inventoryList" maxWidth="Infinity" />
+            </Tab>
+            <Tab fx:id="userPane" text="Users">
+                <ListView fx:id="userList" maxWidth="Infinity" />
+            </Tab>
+        </TabPane>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quit" style="-fx-background-color: red;" text="Quit" />
+      
+      
+              <Button fx:id="disconnectButton" onAction="#goToLogin" style="-fx-background-color: lightblue;" text="Disconnect" />
+        </buttons>
+      </ButtonBar>
+    </VBox>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+
+
+</GridPane>
