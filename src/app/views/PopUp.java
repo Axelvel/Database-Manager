@@ -50,6 +50,7 @@ public class PopUp {
         popupwindow.setTitle(infoType);
 
         Label message= new Label(text);
+        message.setStyle("-fx-font-family: \"Verdana\"");
 
         Button closeButton= new Button("Close");
         closeButton.setStyle("-fx-font-family: \"Verdana\"");
