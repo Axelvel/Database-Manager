@@ -7,6 +7,7 @@ import classes.Computer;
 import classes.Keyboard;
 import database.DatabaseConnection;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -15,10 +16,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 /**
  * Controller class for the AddAssetView fxml file
  */
-public class AddAssetController extends Controller {
+public class AddAssetController extends Controller implements Initializable{
 
     private MainController mainCtrl;
 
@@ -77,7 +81,8 @@ public class AddAssetController extends Controller {
     public void goBack() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         mainCtrl.refreshDataList();
-        changeScene(window, "../views/MainView.fxml", mainCtrl, 600, 700);
+        changeScene(window, "../views/MainView.fxml", mainCtrl, 800, 700);
+        window.centerOnScreen();
     }
 
     /**
@@ -111,8 +116,7 @@ public class AddAssetController extends Controller {
             selectedRadioButton = (RadioButton) switchesGroup.getSelectedToggle();
             String switches = selectedRadioButton.getText();
 
-            boolean isWireless = false;
-            if(wireless.isSelected())isWireless = true;
+            boolean isWireless = wireless.isSelected();
 
             Keyboard k = new Keyboard(code,Type.KEYBOARD,status,true,brandTextField.getText(),isWireless,switches);
 
@@ -137,4 +141,9 @@ public class AddAssetController extends Controller {
         keyboardAttributes.toFront();
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        typeComputer.setSelected(true);
+        switchComputersAttribute();
+    }
 }

@@ -107,7 +107,8 @@ public class UpdateAssetController extends Controller implements Initializable {
     public void goBack() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new MainController(this.dataModel);
-        changeScene(window, "../views/MainView.fxml", controller, 600, 700);
+        changeScene(window, "../views/MainView.fxml", controller, 800, 700);
+        window.centerOnScreen();
     }
 
     /**

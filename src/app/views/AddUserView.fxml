@@ -12,11 +12,11 @@
         xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" fx:id="root">
 
     <VBox alignment="CENTER" spacing="20">
-        <Label text="Add User"/>
-        <TextField fx:id="usernameField" promptText="Username"></TextField>
-        <TextField fx:id="passwordField" promptText="Password"></TextField>
-        <TextField fx:id="nameField" promptText="Name"></TextField>
-        <TextField fx:id="lastnameField" promptText="Last name"></TextField>
+        <Label focusTraversable="true" text="Add User"/>
+        <TextField fx:id="usernameField" promptText="Username"/>
+        <TextField fx:id="passwordField" promptText="Password"/>
+        <TextField fx:id="nameField" promptText="Name"/>
+        <TextField fx:id="lastnameField" promptText="Last name"/>
 
         <Text>Admin</Text>
         <HBox spacing="20" alignment="CENTER">

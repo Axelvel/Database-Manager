@@ -79,6 +79,7 @@ public class AddUserController extends Controller {
     public void goBack() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         mainCtrl.refreshDataList();
-        changeScene(window, "../views/MainView.fxml", mainCtrl, 600, 700);
+        changeScene(window, "../views/MainView.fxml", mainCtrl, 800, 700);
+        window.centerOnScreen();
     }
 }

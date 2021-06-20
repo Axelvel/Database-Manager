@@ -22,12 +22,14 @@ public class Main extends Application {
         Parent root = loader.load();
 
         root.setStyle("-fx-font-family: \"Verdana\"");
+        root.autosize();
 
         primaryStage.setTitle("IT Asset Manager");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.initStyle(StageStyle.DECORATED);
 
         primaryStage.show();
+        primaryStage.centerOnScreen();
         }
 
     public static void main(String[] args){

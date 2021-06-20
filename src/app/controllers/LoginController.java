@@ -35,8 +35,8 @@ public class LoginController extends Controller {
     private void gotoMain() throws Exception {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new MainController(this.dataModel);
-        changeScene(window, "../views/MainView.fxml", controller, 600, 700);
-        window.setMaximized(true);
+        changeScene(window, "../views/MainView.fxml", controller, 800, 700);
+        window.centerOnScreen();
     }
 
     /**

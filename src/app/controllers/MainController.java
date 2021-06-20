@@ -101,6 +101,7 @@ public class MainController extends Controller implements Initializable {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new LoginController(dataModel);
         changeScene(window, "../views/LoginView.fxml", controller, 300, 275);
+        window.centerOnScreen();
     }
 
     /**
@@ -112,6 +113,7 @@ public class MainController extends Controller implements Initializable {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new AddAssetController(dataModel,this);
         changeScene(window, "../views/AddAssetView.fxml", controller, 400, 600);
+        window.centerOnScreen();
     }
 
     /**
@@ -177,7 +179,8 @@ public class MainController extends Controller implements Initializable {
             Stage window = (Stage) root.getScene().getWindow();
             Controller controller = new UpdateAssetController(dataModel, this, asset);
             //SELON LE TYPE D'ASSET? CHAMPS DIFFERENTS
-            changeScene(window, "../views/UpdateAssetView.fxml", controller, 400, 600);
+            changeScene(window, "../views/UpdateAssetView.fxml", controller, 800, 800);
+            window.centerOnScreen();
 
         }
     }
@@ -191,6 +194,7 @@ public class MainController extends Controller implements Initializable {
         Stage window = (Stage) root.getScene().getWindow();
         Controller controller = new AddUserController(dataModel,this);
         changeScene(window, "../views/AddUserView.fxml", controller, 400, 400);
+        window.centerOnScreen();
     }
 
     /**
@@ -219,6 +223,7 @@ public class MainController extends Controller implements Initializable {
         refreshDataList();
         refreshLabel();
         hideAdminOptions();
+
     }
 
     /**

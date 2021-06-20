@@ -11,12 +11,14 @@
         <TextField fx:id="passwordField" promptText="Password" />
 
     </VBox>
+
    <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="1">
      <buttons>
-       <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quit" style="-fx-background-color: red;" text="Quit" textAlignment="CENTER" />
-           <Button fx:id="loginButton" onAction="#login" style="-fx-background-color: lightgreen;" text="Login" />
+       <Button fx:id="quitButton" ButtonBar.buttonData="LEFT" mnemonicParsing="false" onAction="#quit" style="-fx-background-color: red;" text="Quit" textAlignment="CENTER" />
+           <Button fx:id="loginButton" ButtonBar.buttonData="RIGHT" onAction="#login" style="-fx-background-color: lightgreen;" text="Login" textAlignment="CENTER" />
      </buttons>
    </ButtonBar>
+
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>

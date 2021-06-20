@@ -60,9 +60,11 @@ public class PopUp {
         VBox layout= new VBox(10);
         layout.getChildren().addAll(message, closeButton);
         layout.setAlignment(Pos.CENTER);
-        Scene scene= new Scene(layout, 300, 150);
+        Scene scene= new Scene(layout, 400, 275);
+
         popupwindow.setScene(scene);
         popupwindow.showAndWait();
+        popupwindow.centerOnScreen();
     }
 
     /**
@@ -147,9 +149,10 @@ public class PopUp {
         VBox layout= new VBox(10);
         layout.getChildren().addAll(title,content,closeButton);
         layout.setAlignment(Pos.CENTER);
-        Scene scene= new Scene(layout, 300, 250);
+        Scene scene= new Scene(layout, 600, 400);
         popupwindow.setScene(scene);
         popupwindow.showAndWait();
+        popupwindow.centerOnScreen();
     }
 
     /**
@@ -196,9 +199,10 @@ public class PopUp {
         VBox layout= new VBox(10);
         layout.getChildren().addAll(content,closeButton);
         layout.setAlignment(Pos.CENTER);
-        Scene scene= new Scene(layout, 300, 250);
+        Scene scene= new Scene(layout, 400, 275);
         popupwindow.setScene(scene);
         popupwindow.showAndWait();
+        popupwindow.centerOnScreen();
     }
 
 }
