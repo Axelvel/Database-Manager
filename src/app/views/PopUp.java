@@ -52,19 +52,6 @@ public class PopUp {
         Label message= new Label(text);
         message.setStyle("-fx-font-family: \"Verdana\"");
 
-        Button closeButton= new Button("Close");
-        closeButton.setStyle("-fx-font-family: \"Verdana\"");
-
-        closeButton.setOnAction(e -> popupwindow.close());
-
-        VBox layout= new VBox(10);
-        layout.getChildren().addAll(message, closeButton);
-        layout.setAlignment(Pos.CENTER);
-        Scene scene= new Scene(layout, 400, 275);
-
-        popupwindow.setScene(scene);
-        popupwindow.showAndWait();
-        popupwindow.centerOnScreen();
     }
 
     /**

@@ -61,15 +61,14 @@ public class UserCell extends ListCell<User> {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-                icon = new Image(inputstream);
             }else{
                 try {
                     inputstream = new FileInputStream("src/resources/userIcon.png");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-                icon = new Image(inputstream);
             }
+            icon = new Image(inputstream);
 
             iconView.setImage(icon);
             iconView.setFitWidth(40);

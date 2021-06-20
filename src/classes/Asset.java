@@ -50,11 +50,10 @@ public abstract class Asset {
     public boolean getWireless(){return false;}
 
     //Setters
-    public void setOs(String os){};
-    public void setBrand(String brand){};
-    public void setMemory(int memory){};
-    public void setRam(int ram) {};
-    public void setWireless(boolean w){};
-    public void setSwitches(String s){};
-
+    public void setOs(String os){}
+    public void setBrand(String brand){}
+    public void setMemory(int memory){}
+    public void setRam(int ram) {}
+    public void setWireless(boolean w){}
+    public void setSwitches(String s){}
 }

@@ -1,12 +1,8 @@
 package app;
 
-import classes.Computer;
-import classes.Inventory;
 import classes.User;
-import classes.Users;
 import database.DatabaseConnection;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**

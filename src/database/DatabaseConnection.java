@@ -300,7 +300,7 @@ public class DatabaseConnection {
             String password = rs.getString("user_password");
             String name = rs.getString("user_name");
             String lastName = rs.getString("user_last_name");
-            Boolean admin = rs.getBoolean("user_status");
+            boolean admin = rs.getBoolean("user_status");
             User u = new User(username,password,name,lastName,admin);
             users.addUser(u);
         }

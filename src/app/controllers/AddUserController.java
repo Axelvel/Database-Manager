@@ -80,6 +80,5 @@ public class AddUserController extends Controller {
         Stage window = (Stage) root.getScene().getWindow();
         mainCtrl.refreshDataList();
         changeScene(window, "../views/MainView.fxml", mainCtrl, 800, 700);
-        window.centerOnScreen();
     }
 }

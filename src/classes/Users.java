@@ -7,7 +7,7 @@ import java.util.List;
  * class used in order to store the users found in the sqlite database
  */
 public class Users {
-    private List<User> users = new ArrayList<User>();
+    private List<User> users = new ArrayList<>();
 
     public List<User> getUsers() {
         return this.users;
@@ -18,27 +18,25 @@ public class Users {
     }
 
     public void deleteUser(String username) {
-        users.removeIf(user -> (user.getUsername() == username));
+        users.removeIf(user -> (user.getUsername().equals(username)));
     }
 
     public void showUserslist() {
-        this.users.forEach(user -> {
-            System.out.println(user.getName());
-        });
+        this.users.forEach(user -> System.out.println(user.getName()));
     }
 
     public String getUserUsername(String username) {
 
-        for(int i = 0; i < this.users.size(); i++) {
-            if (this.users.get(i).getUsername().equals(username))return users.get(i).getUsername();
+        for (User user : this.users) {
+            if (user.getUsername().equals(username)) return user.getUsername();
         }
         return null;
     }
 
     public boolean passwordMatch(String username, String password) {
-        for (int i = 0; i < this.users.size(); i++) {
-            if (users.get(i).getUsername().equals(username)) {
-                if (users.get(i).getPassword().equals(password))return true;
+        for (User user : this.users) {
+            if (user.getUsername().equals(username)) {
+                if (user.getPassword().equals(password)) return true;
             }
         }
         return  false;
